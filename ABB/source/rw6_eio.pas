@@ -119,7 +119,7 @@ type
   public
     constructor Create(ACollection: TCollection); override;
     property Nombre: string read FNombre write FNombre;
-    property Result: string read FResult write FResult;
+    property Res: string read FResult write FResult;
     property Act1: string read FAct1 write FAct1;
     property Act2: string read FAct2 write FAct2;
     property Act3: string read FAct3 write FAct3;
@@ -159,7 +159,7 @@ implementation
 
 function TCrossConnectionList.GetItems(Index: integer): TCrossConnectionItem;
 begin
-  Result := inherited Add as TCrossConnectionItem;
+  Result := TCrossConnectionItem(inherited Items[Index]);
 end;
 
 procedure TCrossConnectionList.SetItems(Index: integer; AValue: TCrossConnectionItem);
@@ -176,14 +176,16 @@ function TCrossConnectionList.Add: TCrossConnectionItem;
 begin
   Result := inherited Add as TCrossConnectionItem;
 end;
- { TODO : Continuar aquí. Rehacer la rutina. }
+
 procedure TCrossConnectionList.LoadFromStrings(StringList: TStringList);
 var
-  I: integer;
-  inicio: boolean;
-  cadena, strStatus, strSignal, Parte1, Parte2: string;
-  Palabras: SizeInt;
+  I, Indice, X: integer;
+  inicio, Fin: boolean;
+  cadena, Temp, Parte1, strAct1, strName, strRes, Parametro, strAct5,
+  strAct4, strAct3, strAct2, strOper4, strOper1, strOper2, strOper3,
+  strAct1Invert, strAct3Invert, strAct4Invert, strAct5Invert, strAct2Invert: string;
   dato: TCrossConnectionItem;
+  Palabras: SizeInt;
 begin
   Inicio := False;
   I := 0;
@@ -198,48 +200,168 @@ begin
     end;
     if (inicio = True) and (cadena <> '') then
     begin
-      cadena := trim(cadena);
+      Cadena := trim(Cadena);
+      //Fin := False;
+      while EndsStr('\', Cadena) do
+      begin
+        if I + 1 < StringList.Count - 1 then
+        begin
+          Temp := Trim(StringList[I + 1]);
+          if (Pos('-', Temp) = 1) then
+          begin
+            //Retirar barra final  y le añadimos un final
+            Cadena := TrimRightSet(Cadena, ['\']);
+            // Le añadimos la nueva cadena
+            Cadena := Cadena + ' ' + Temp;
+            I := I + 1;
+          end
+          else
+          begin
+            Cadena := TrimRightSet(Cadena, ['\']);
+
+          end;
+        end;
+      end;
+      strAct2 := '';
+      strAct3 := '';
+      strAct4 := '';
+      strAct5 := '';
+      strOper1 := '';
+      strOper2 := '';
+      strOper3 := '';
+      strOper4 := '';
+      strAct1Invert := '';
+      strAct2Invert := '';
+      strAct3Invert := '';
+      strAct4Invert := '';
+      strAct5Invert := '';
+      //Las tres parametros: name res y act1 son obligatorios y por este orden
       Palabras := WordCount(Cadena, ['-']);
       if Palabras < 3 then
       begin
-        raise EEioError.Create('Fallo leyendo archivo Eio. Seccion EIO_CROSS');
+        raise EEioError.Create('Fail reading file Eio. Seccion EIO_CROSS');
       end;
       Parte1 := ExtractWord(1, Cadena, ['-']);
-      if Pos('Name', Parte1) <> 1 then
+      Parametro := ExtractWord(1, Parte1, [' ']);
+      if Parametro <> 'Name' then
       begin
-        raise EEioError.Create('Fallo leyendo archivo Eio. Seccion EIO_CROSS');
+        raise EEioError.Create('Fail reading file Eio. Seccion EIO_CROSS');
       end;
-      strName := ExtractWord(2, Parte1, [' ']);
+      strName := ExtractWord(2, Cadena, [' ']);
 
-      Parte2 := ExtractWord(2, Cadena, ['-']);
-      if Pos('Res', Parte2) <> 1 then
+      Parte1 := ExtractWord(2, Cadena, ['-']);
+      Parametro := ExtractWord(1, Parte1, [' ']);
+      if Parametro <> 'Res' then
       begin
-        raise EEioError.Create('Fallo leyendo archivo Eio. Seccion EIO_CROSS');
+        raise EEioError.Create('Fail reading file Eio. Seccion EIO_CROSS');
       end;
-      strRes := ExtractWord(2, Parte2, [' ']);
+      strRes := ExtractWord(2, Parte1, [' ']);
 
-      Parte3 := ExtractWord(3,Cadena,['-']);
-      if (Pos('-Act1',Parte3) <> 1 then
+      Parte1 := ExtractWord(3, Cadena, ['-']);
+      Parametro := ExtractWord(1, Parte1, [' ']);
+      if Parametro <> 'Act1' then
       begin
-         raise EEioError.Create('Fallo leyendo archivo Eio. Seccion EIO_CROSS');
+        raise EEioError.Create('Fail reading file Eio. Seccion EIO_CROSS');
       end;
+      strAct1 := ExtractWord(2, Parte1, [' ']);
 
-      strAct1 := ExtractWord(3,Parte3,['-'])
+      //Parámetros  opcionales
 
+      if Palabras > 3 then
+      begin
+        for X := 4 to Palabras do
+        begin
+          Parte1 := ExtractWord(X, Cadena, ['-']);
+          Parametro := ExtractWord(1,Parte1,[' ']);
+          case Parametro of
+            'Act2':
+            begin
+              strAct2 := ExtractWord(2, Parte1, [' ']);
+            end;
+            'Act3':
+            begin
+              strAct3 := ExtractWord(2, Parte1, [' ']);
+            end;
+            'Act4':
+            begin
+              strAct4 := ExtractWord(2, Parte1, [' ']);
+            end;
+            'Act5':
+            begin
+              strAct5 := ExtractWord(2, Parte1, [' ']);
+            end;
+            'Oper1':
+            begin
+              strOper1 := ExtractWord(2, Parte1, [' ']);
+            end;
+            'Oper2':
+            begin
+              strOper2 := ExtractWord(2, Parte1, [' ']);
+            end;
+            'Oper3':
+            begin
+              strOper3 := ExtractWord(2, Parte1, [' ']);
+            end;
+            'Oper4':
+            begin
+              strOper4 := ExtractWord(2, Parte1, [' ']);
+            end;
+            'Act1_invert':
+            begin
+              strAct1Invert := Parte1;
+            end;
+            'Act2_invert':
+            begin
+              strAct2Invert := Parte1;
+            end;
+            'Act3_invert':
+            begin
+              strAct3Invert := Parte1;
+            end;
+            'Act4_invert':
+            begin
+              strAct4Invert := Parte1;
+            end;
+            'Act5_invert':
+            begin
+              strAct5Invert := Parte1;
+            end;
+          end;
+        end;
+      end;
+      //Guardar datos
       dato := Self.Add;
-      dato.FSignal := TrimSet(strSignal, ['"']);
-      dato.Fstatus := TrimSet(strStatus, ['"']);
-    end;
+      dato.Nombre := TrimSet(strName, ['"']);
+      dato.Res := TrimSet(strRes, ['"']);
 
+      dato.Act1 := TrimSet(strAct1, ['"']);
+      dato.Act2 := TrimSet(strAct2, ['"']);
+      dato.Act3 := TrimSet(strAct3, ['"']);
+      dato.Act4 := TrimSet(strAct4, ['"']);
+      dato.Act5 := TrimSet(strAct5, ['"']);
+
+      dato.Oper1 := TrimSet(strOper1, ['"']);
+      dato.Oper2 := TrimSet(strOper2, ['"']);
+      dato.Oper3 := TrimSet(strOper3, ['"']);
+      dato.Oper4 := TrimSet(strOper4, ['"']);
+
+      dato.Act1_invert := TrimSet(strAct1Invert, ['"']);
+      dato.Act2_invert := TrimSet(strAct2Invert, ['"']);
+      dato.Act3_invert := TrimSet(strAct3Invert, ['"']);
+      dato.Act4_invert := TrimSet(strAct4Invert, ['"']);
+      dato.Act5_invert := TrimSet(strAct5Invert, ['"']);
+
+    end;
     //Buscar inicio de seccion
     if Cadena = 'EIO_CROSS:' then
     begin
       inicio := True;
     end;
 
-    I := I + 1;
-  end;
 
+    I := I + 1;
+
+  end;
 end;
 
 { TCrossConnectionItem }
@@ -283,14 +405,7 @@ var
 begin
   Inicio := False;
   I := 0;
-  Arg1 := '';
-  Arg2 := '';
-  Arg3 := '';
-  Arg4 := '';
-  Arg5 := '';
-  Arg6 := '';
-  Arg7 := '';
-  Arg8 := '';
+
   while I < StringList.Count - 1 do
   begin
     cadena := StringList[I];
@@ -302,23 +417,31 @@ begin
     if (inicio = True) and (cadena <> '') then
     begin
       cadena := trim(cadena);
+      Arg1 := '';
+      Arg2 := '';
+      Arg3 := '';
+      Arg4 := '';
+      Arg5 := '';
+      Arg6 := '';
+      Arg7 := '';
+      Arg8 := '';
       Palabras := WordCount(Cadena, ['-']);
       if Palabras < 2 then
       begin
-        raise EEioError.Create('Fallo leyendo archivo Eio. Seccion SYSSIG_IN');
+        raise EEioError.Create('Fail reading file Eio. Seccion SYSSIG_IN');
       end;
 
       Parte1 := ExtractWord(1, Cadena, ['-']);
       if Pos('Signal', Parte1) <> 1 then
       begin
-        raise EEioError.Create('Fallo leyendo archivo Eio. Seccion SYSSIG_IN');
+        raise EEioError.Create('Fail reading file Eio. Seccion SYSSIG_IN');
       end;
       srtSignal := ExtractWord(2, Parte1, [' ']);
 
       Parte2 := ExtractWord(2, Cadena, ['-']);
       if Pos('Action', Parte2) <> 1 then
       begin
-        raise EEioError.Create('Fallo leyendo archivo Eio. Seccion SYSSIG_IN');
+        raise EEioError.Create('Fail reading file Eio. Seccion SYSSIG_IN');
       end;
       strAction := ExtractWord(2, Parte2, [' ']);
       //Hay un argumento opcional
@@ -452,19 +575,19 @@ begin
       Palabras := WordCount(Cadena, ['-']);
       if Palabras <> 2 then
       begin
-        raise EEioError.Create('Fallo leyendo archivo Eio. Seccion SYSSIG_OUT');
+        raise EEioError.Create('Fail readin file Eio. Seccion SYSSIG_OUT');
       end;
       Parte1 := ExtractWord(1, Cadena, ['-']);
       if Pos('Status', Parte1) <> 1 then
       begin
-        raise EEioError.Create('Fallo leyendo archivo Eio. Seccion SYSSIG_OUT');
+        raise EEioError.Create('Fail readin file Eio. Seccion SYSSIG_OUT');
       end;
       strStatus := ExtractWord(2, Parte1, [' ']);
 
       Parte2 := ExtractWord(2, Cadena, ['-']);
       if Pos('Signal', Parte2) <> 1 then
       begin
-        raise EEioError.Create('Fallo leyendo archivo Eio. Seccion SYSSIG_OUT');
+        raise EEioError.Create('Fail readin file Eio. Seccion SYSSIG_OUT');
       end;
       strSignal := ExtractWord(2, Parte2, [' ']);
       dato := Self.Add;

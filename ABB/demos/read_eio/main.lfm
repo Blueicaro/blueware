@@ -1,0 +1,46 @@
+object Form1: TForm1
+  Left = 564
+  Height = 729
+  Top = 242
+  Width = 964
+  Caption = 'Form1'
+  ClientHeight = 698
+  ClientWidth = 964
+  DesignTimePPI = 102
+  Menu = MainMenu1
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '2.0.10.0'
+  object TreeView1: TTreeView
+    Left = 0
+    Height = 698
+    Top = 0
+    Width = 225
+    Align = alLeft
+    TabOrder = 0
+  end
+  object Splitter1: TSplitter
+    Left = 225
+    Height = 698
+    Top = 0
+    Width = 5
+  end
+  object MainMenu1: TMainMenu
+    Left = 521
+    Top = 295
+    object MenuItem1: TMenuItem
+      Caption = 'File'
+      OnClick = MenuItem1Click
+      object MenuItem2: TMenuItem
+        Caption = 'Open'
+        OnClick = MenuItem2Click
+      end
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    DefaultExt = '.cfg'
+    Filter = 'Abb config files|*.cfg'
+    Left = 760
+    Top = 248
+  end
+end
