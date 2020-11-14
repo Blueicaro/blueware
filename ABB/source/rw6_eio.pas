@@ -153,7 +153,80 @@ type
     procedure LoadFromStrings(StringList: TStringList);
   end;
 
+
+//Entradas y salidas del usuario
+type
+
+  { TSignalitem }
+
+  TSignalItem = class(TCollectionItem)
+
+  private
+    FAccess: string;
+    FCategory: string;
+    FDefaultValue: string;
+    FDevice: string;
+    FDeviceMap: string;
+    FEncType: string;
+    FFiltAct: string;
+    FFiltPas: string;
+    FInvert: string;
+    FMaxBitVal: string;
+    FMaxLog: string;
+    FMaxPhys: string;
+    FMaxPhysLimit: string;
+    FMinBitVal: string;
+    FMinLog: string;
+    FMinPhys: string;
+    FMinPhysLimit: string;
+    FNombre: string;
+    FSafeLevel: string;
+    FSignalLabel: string;
+    FSignalType: string;
+    FSize: string;
+  public
+    constructor Create(ACollection: TCollection); override;
+    property Nombre: string read FNombre write FNombre;
+    property SignalType: string read FSignalType write FSignalType;
+    property Device : string read FDevice write FDevice;
+    property DeviceMap : string read FDeviceMap write FDeviceMap;
+    property SignalLabel : string read FSignalLabel write FSignalLabel;
+    property Category: string read FCategory write FCategory;
+    property Access: string read FAccess write FAccess;
+    property DefaultValue: string read FDefaultValue write FDefaultValue; //Default
+    property SafeLevel: string read FSafeLevel write FSafeLevel;
+    property FiltPas: string read FFiltPas write FFiltPas;
+    property FiltAct: string read FFiltAct write FFiltAct;
+    property Invert: string read FInvert write FInvert;
+    property EncType: string read FInvert write FEncType;
+    property MaxLog: string read FMaxLog write FMaxLog;
+    property MaxPhys: string read FMaxPhys write FMaxPhys;
+    property MaxPhysLimit: string read FMaxPhys write FMaxPhysLimit;
+    property MaxBitVal: string read FMaxBitVal write FMaxBitVal;
+    property MinLog: string read FMinLog write FMinLog;
+    property MinPhys: string read FMinPhys write FMinPhys;
+    property MinPhysLimit: string read FMinPhys write FMinPhysLimit;
+    property MinBitVal: string read FMinBitVal write FMinBitVal;
+    property Size:string read FSize write FSize;
+  end;
+
+  { constructor Create;
+    function Add: TCrossConnectionItem;
+    property Items[Index: integer]: TCrossConnectionItem read GetItems write SetItems;
+      default;        }
+  Type TSignalList = class (TCollection)
+
+  end;
+
 implementation
+
+{ TSignalItem }
+
+constructor TSignalItem.Create(ACollection: TCollection);
+begin
+  if Assigned(ACollection) then
+    inherited Create(ACollection);
+end;
 
 { TCrossConnectionList }
 
@@ -179,8 +252,8 @@ end;
 
 procedure TCrossConnectionList.LoadFromStrings(StringList: TStringList);
 var
-  I, Indice, X: integer;
-  inicio, Fin: boolean;
+  I, X: integer;
+  inicio: boolean;
   cadena, Temp, Parte1, strAct1, strName, strRes, Parametro, strAct5,
   strAct4, strAct3, strAct2, strOper4, strOper1, strOper2, strOper3,
   strAct1Invert, strAct3Invert, strAct4Invert, strAct5Invert, strAct2Invert: string;
@@ -272,7 +345,7 @@ begin
         for X := 4 to Palabras do
         begin
           Parte1 := ExtractWord(X, Cadena, ['-']);
-          Parametro := ExtractWord(1,Parte1,[' ']);
+          Parametro := ExtractWord(1, Parte1, [' ']);
           case Parametro of
             'Act2':
             begin
