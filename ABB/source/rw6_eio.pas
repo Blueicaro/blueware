@@ -188,9 +188,9 @@ type
     constructor Create(ACollection: TCollection); override;
     property Nombre: string read FNombre write FNombre;
     property SignalType: string read FSignalType write FSignalType;
-    property Device : string read FDevice write FDevice;
-    property DeviceMap : string read FDeviceMap write FDeviceMap;
-    property SignalLabel : string read FSignalLabel write FSignalLabel;
+    property Device: string read FDevice write FDevice;
+    property DeviceMap: string read FDeviceMap write FDeviceMap;
+    property SignalLabel: string read FSignalLabel write FSignalLabel;
     property Category: string read FCategory write FCategory;
     property Access: string read FAccess write FAccess;
     property DefaultValue: string read FDefaultValue write FDefaultValue; //Default
@@ -207,18 +207,381 @@ type
     property MinPhys: string read FMinPhys write FMinPhys;
     property MinPhysLimit: string read FMinPhys write FMinPhysLimit;
     property MinBitVal: string read FMinBitVal write FMinBitVal;
-    property Size:string read FSize write FSize;
+    property Size: string read FSize write FSize;
   end;
 
-  { constructor Create;
-    function Add: TCrossConnectionItem;
-    property Items[Index: integer]: TCrossConnectionItem read GetItems write SetItems;
-      default;        }
-  Type TSignalList = class (TCollection)
+type
 
+  { TSignalList }
+
+  TSignalList = class(TCollection)
+  private
+    function GetItems(Index: integer): TSignalItem;
+    procedure SetItems(Index: integer; AValue: TSignalItem);
+  public
+    constructor Create;
+    function Add: TSignalItem;
+    property Items[Index: integer]: TSignalItem read GetItems write SetItems; default;
+    procedure LoadFromStrings(StringList: TStringList);
+  end;
+
+//Redes industriales
+type
+
+  { TNetWorkItem }
+
+  TNetWorkItem = class(TCollectionItem)
+  private
+    FAddress: string;
+    FGateway: string;
+    FIdenficationLabel: string;
+    FNombre: string;
+    FSubnetMask: string;
+  public
+    constructor Create(ACollection: TCollection); override;
+    property Nombre: string read FNombre write FNombre;
+    property IdenficationLabel: string read FIdenficationLabel write FIdenficationLabel;
+    property Address: string read FAddress write FAddress;
+    property SubnetMask: string read FSubnetMask write FSubnetMask;
+    property Gateway: string read FGateway write FGateway;
+  end;
+
+type
+
+  { TNetWorkList }
+
+  TNetWorkList = class(TCollection)
+  private
+    function GetItems(Index: integer): TNetWorkItem;
+    procedure SetItems(Index: integer; AValue: TNetWorkItem);
+  public
+    constructor Create;
+    function Add: TNetWorkItem;
+    property Items[Index: integer]: TNetWorkItem read GetItems write SetItems; default;
+    procedure LoadFromStrings(StringList: TStringList);
   end;
 
 implementation
+
+{ TNetWorkList }
+
+function TNetWorkList.GetItems(Index: integer): TNetWorkItem;
+begin
+  Result := TNetWorkItem(inherited Items[index]);
+end;
+
+procedure TNetWorkList.SetItems(Index: integer; AValue: TNetWorkItem);
+begin
+  items[Index].Assign(AValue);
+end;
+
+constructor TNetWorkList.Create;
+begin
+  inherited Create(TNetWorkItem);
+end;
+
+function TNetWorkList.Add: TNetWorkItem;
+begin
+  Result := inherited Add as TNetWorkItem;
+end;
+
+procedure TNetWorkList.LoadFromStrings(StringList: TStringList);
+var
+  Inicio: boolean;
+  I, X: integer;
+  cadena, Temp, Valor, stName, stLabel, stAddress, stSubnetMask,
+  stGateway, Parte, Parametro: string;
+  Palabras: SizeInt;
+  dato: TNetWorkItem;
+begin
+  Inicio := False;
+  I := 0;
+  while I < StringList.Count - 1 do
+  begin
+    cadena := StringList[I];
+    if ((Cadena = '#') or EndsStr(':',Cadena) ) and (inicio = True) then
+    begin
+      i := StringList.Count;
+      inicio := False;
+    end;
+    if (inicio = True) and (cadena <> '') then
+    begin
+      cadena := trim(cadena);
+      while EndsStr('\', Cadena) do
+      begin
+        if I + 1 < StringList.Count then
+        begin
+          Temp := Trim(StringList[I + 1]);
+          if (Pos('-', Temp) = 1) then
+          begin
+            //Retirar barra final  y le añadimos un final
+            Cadena := TrimRightSet(Cadena, ['\']);
+            // Le añadimos la nueva cadena
+            Cadena := Cadena + ' ' + Temp;
+            I := I + 1;
+          end
+          else
+          begin
+            Cadena := TrimRightSet(Cadena, ['\']);
+          end;
+        end
+        else
+        begin
+          Cadena := TrimRightSet(Cadena, ['\']);
+        end;
+      end;
+      Palabras := WordCount(Cadena, ['-']);
+      if Palabras < 5 then
+      begin
+        raise EEioError.Create('Fail reading file Eio. Seccion INDUSTRIAL_NETWORK');
+      end;
+
+      stName := '';
+      stLabel := '';
+      stAddress := '';
+      stSubnetMask := '';
+      stGateway := '';
+
+      for X := 1 to Palabras do
+      begin
+        Parte := ExtractWord(X, Cadena, ['-']);
+        Parametro := ExtractWord(1, Parte, [' ']);
+        Valor := ExtractWord(2, Parte, [' ']);
+        Valor := TrimSet(Valor, ['"']);
+        case Parametro of
+          'Name':
+            stName := Valor;
+          'Label':
+            stLabel := Valor;
+          'Address':
+            stAddress := Valor;
+          'SubnetMask':
+            stSubnetMask := Valor;
+          'Gateway':
+            stGateway := Valor;
+        end;
+      end;
+
+
+      dato := Self.Add;
+      dato.Nombre := stName;
+      dato.IdenficationLabel := stLabel;
+      dato.Address := stAddress;
+      dato.SubnetMask := stSubnetMask;
+      dato.Gateway := stGateway;
+
+
+    end;
+
+    //Buscar inicio de seccion
+    if Cadena = 'INDUSTRIAL_NETWORK:' then
+    begin
+      inicio := True;
+    end;
+
+    I := I + 1;
+  end;
+
+end;
+
+{ TNetWorkItem }
+
+constructor TNetWorkItem.Create(ACollection: TCollection);
+begin
+  if Assigned(ACollection) then
+    inherited Create(ACollection);
+end;
+
+{ TSignalList }
+
+function TSignalList.GetItems(Index: integer): TSignalItem;
+begin
+  Result := TSignalItem(inherited Items[index]);
+end;
+
+procedure TSignalList.SetItems(Index: integer; AValue: TSignalItem);
+begin
+  items[Index].Assign(AValue);
+end;
+
+constructor TSignalList.Create;
+begin
+  inherited Create(TSignalItem);
+end;
+
+function TSignalList.Add: TSignalItem;
+begin
+  Result := inherited Add as TSignalItem;
+end;
+
+procedure TSignalList.LoadFromStrings(StringList: TStringList);
+var
+  dato: TSignalItem;
+  Parametro, cadena, Parte, stSize, stName, stSignalType, stDevice,
+  stDeviceMap, stSignalLabel, stCategory, stAccess, stDefault,
+  stSafeLevel, stFiltPas, stFiltAct, stInvert, stEncType, stMaxLog,
+  stMaxPhys, stMaxPhysLimit, stMaxBitVal, stMinLog, stMinPhys,
+  stMinPhysLimit, stMinBitVal, Temp, Valor: string;
+  Palabras: SizeInt;
+  Inicio: boolean;
+  I, X: integer;
+begin
+  Inicio := False;
+  I := 0;
+  while I < StringList.Count - 1 do
+  begin
+    cadena := StringList[I];
+    if (Cadena = '#') and (inicio = True) then
+    begin
+      i := StringList.Count;
+      inicio := False;
+    end;
+    if (inicio = True) and (cadena <> '') then
+    begin
+      cadena := trim(cadena);
+      while EndsStr('\', Cadena) do
+      begin
+        if I + 1 < StringList.Count then
+        begin
+          Temp := Trim(StringList[I + 1]);
+          if (Pos('-', Temp) = 1) then
+          begin
+            //Retirar barra final  y le añadimos un final
+            Cadena := TrimRightSet(Cadena, ['\']);
+            // Le añadimos la nueva cadena
+            Cadena := Cadena + ' ' + Temp;
+            I := I + 1;
+          end
+          else
+          begin
+            Cadena := TrimRightSet(Cadena, ['\']);
+          end;
+        end
+        else
+        begin
+          Cadena := TrimRightSet(Cadena, ['\']);
+        end;
+      end;
+      Palabras := WordCount(Cadena, ['-']);
+      if Palabras < 2 then
+      begin
+        raise EEioError.Create('Fail reading file Eio. Seccion EIO_SIGNAL');
+      end;
+
+      stSize := '';
+      stName := '';
+      stSignalType := '';
+      stDevice := '';
+      stDeviceMap := '';
+      stSignalLabel := '';
+      stCategory := '';
+      stAccess := '';
+      stDefault := '';
+      stSafeLevel := '';
+      stFiltPas := '';
+      stFiltAct := '';
+      stInvert := '';
+      stEncType := '';
+      stMaxLog := '';
+      stMaxPhys := '';
+      stMaxPhysLimit := '';
+      stMaxBitVal := '';
+      stMinLog := '';
+      stMinPhys := '';
+      stMinPhysLimit := '';
+      stMinBitVal := '';
+
+      for X := 1 to Palabras do
+      begin
+        Parte := ExtractWord(X, Cadena, ['-']);
+        Parametro := ExtractWord(1, Parte, [' ']);
+        Valor := ExtractWord(2, Parte, [' ']);
+        Valor := TrimSet(Valor, ['"']);
+        case Parametro of
+          'Name':
+            stName := Valor;
+          'SignalType':
+            stSignalType := Valor;
+          'Device':
+            stDevice := Valor;
+          'DeviceMap':
+            stDeviceMap := Valor;
+          'SignalLabel':
+            stSignalLabel := Valor;
+          'Category':
+            stCategory := Valor;
+          'Access':
+            stAccess := Valor;
+          'Default':
+            stDefault := Valor;
+          'SafeLevel':
+            stSafeLevel := Valor;
+          'FiltPas':
+            stFiltPas := Valor;
+          'FiltAct':
+            stFiltAct := Valor;
+          'Invert':
+            stInvert := Valor;
+          'EncType':
+            stEncType := Valor;
+          'MaxLog':
+            stMaxLog := Valor;
+          'MaxPhys':
+            stMaxPhys := Valor;
+          'MaxPhysLimit':
+            stMaxPhysLimit := Valor;
+          'MaxBitVal':
+            stMaxBitVal := Valor;
+          'MinLog':
+            stMinLog := Valor;
+          'MinPhys':
+            stMinPhys := Valor;
+          'MinPhysLimit':
+            stMinPhysLimit := Valor;
+          'MinBitVal':
+            stMinBitVal := Valor;
+          'Size':
+            stSize := Valor;
+        end;
+      end;
+
+
+      dato := Self.Add;
+      dato.Nombre := stName;
+      dato.SignalType := stSignalType;
+      dato.DeviceMap := stDeviceMap;
+      dato.Device := stDevice;
+      dato.SignalLabel := stSignalLabel;
+      dato.Category := stCategory;
+      dato.Access := stAccess;
+      dato.DefaultValue := stDefault;
+      dato.SafeLevel := stSafeLevel;
+      dato.FiltPas := stFiltPas;
+      dato.FiltAct := stFiltAct;
+      dato.Invert := stInvert;
+      dato.EncType := stEncType;
+      dato.MaxLog := stMaxLog;
+      dato.MaxPhys := stMaxPhys;
+      dato.MaxPhysLimit := stMaxPhysLimit;
+      dato.MaxBitVal := stMaxBitVal;
+      dato.MinLog := stMinLog;
+      dato.MinPhys := stMinPhys;
+      dato.MinPhysLimit := stMinPhysLimit;
+      dato.MinBitVal := stMinBitVal;
+      dato.Size := stSize;
+
+    end;
+
+    //Buscar inicio de seccion
+    if Cadena = 'EIO_SIGNAL:' then
+    begin
+      inicio := True;
+    end;
+
+    I := I + 1;
+  end;
+
+end;
 
 { TSignalItem }
 
@@ -291,7 +654,6 @@ begin
           else
           begin
             Cadena := TrimRightSet(Cadena, ['\']);
-
           end;
         end;
       end;

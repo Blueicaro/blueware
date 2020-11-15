@@ -1,35 +1,28 @@
 object Form1: TForm1
-  Left = 2570
-  Height = 532
-  Top = 201
-  Width = 769
+  Left = 2655
+  Height = 591
+  Top = 261
+  Width = 880
   Caption = 'Form1'
-  ClientHeight = 532
-  ClientWidth = 769
+  ClientHeight = 591
+  ClientWidth = 880
   DesignTimePPI = 102
+  OnCreate = FormCreate
   LCLVersion = '2.0.10.0'
   object Memo1: TMemo
-    Left = 9
+    Left = 8
     Height = 176
     Top = 24
-    Width = 743
+    Width = 854
+    Anchors = [akTop, akLeft, akRight]
     Lines.Strings = (
-      'EIO_CROSS:'
+      'INDUSTRIAL_NETWORK:'
       ''
-      '      -Name "Rob2WatchDog" -Res "doRob2Watchdog" -Act1 "diRob2Watchdog"\'
-      '      -Act1_invert '
-      ''
-      '      -Name "ManualMode" -Res "doRob2Man" -Act1 "MAN1" -Oper1 "OR" -Act2 "MAN2"'
-      ''
-      '      -Name "ManualMode100" -Res "doRob2Man100" -Act1 "MANFS1" -Oper1 "OR"\'
-      '      -Act2 "MANFS2"'
-      ''
-      '      -Name "BrakeTestWarning" -Res "doRob2BrakeTestWarn" -Act1 "PSC1CBCPREWARN"'
-      ''
-      '      -Name "BrakeTestReqired" -Res "doRob2BrakeTestReqInt" -Act1 "PSC1CBCREQ"'
-      ''
-      '      -Name "Rob2Moved" -Res "doRobStopped" -Act1 "doRob2Move" -Act1_invert '
+      '      -Name "PROFINET_Anybus" -Label "PROFINET Anybus Network"\'
+      '      -Address "10.213.20.136" -SubnetMask "255.255.255.0" -Gateway "NotUsed"'
+      'INDUSTRIAL_NETW:'
     )
+    ScrollBars = ssAutoBoth
     TabOrder = 0
   end
   object Memo2: TMemo
