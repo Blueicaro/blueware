@@ -5,7 +5,7 @@ unit rw6_eio;
 interface
 
 uses
-  Classes, SysUtils, StrUtils;
+  Classes, SysUtils,StrUtils;
 
 type
   EEioError = class(Exception)
@@ -261,7 +261,178 @@ type
     procedure LoadFromStrings(StringList: TStringList);
   end;
 
+type
+
+  { TAccessLevelItem }
+
+  TAccessLevelItem = class(TCollectionItem)
+  private
+    FLocalAuto: boolean;
+    FLocalManual: boolean;
+    FNombre: string;
+    FRapid: boolean;
+    FRemoteAuto: boolean;
+    FRemoteManual: boolean;
+  public
+    constructor Create(ACollection: TCollection); override;
+  published
+   {
+    -Rapid  -LocalManual  -LocalAuto  -RemoteManual \
+      -RemoteAuto }
+    property Nombre: string read FNombre write FNombre;
+    property Rapid: boolean read FRapid write FRapid;
+    property LocalManual: boolean read FLocalManual write FLocalManual;
+    property LocalAuto: boolean read FLocalAuto write FLocalAuto;
+    property RemoteManual: boolean read FRemoteManual write FRemoteManual;
+    property RemoteAuto: boolean read FRemoteAuto write FRemoteAuto;
+  end;
+
+type
+
+  { TAccessLevelList }
+
+  TAccessLevelList = class(TCollection)
+  private
+    function GetItems(index: integer): TAccessLevelItem;
+    procedure SetItems(Index: integer; AValue: TAccessLevelItem);
+  public
+    constructor Create;
+    function Add: TAccessLevelItem;
+    property Items[Index: integer]: TAccessLevelItem read GetItems write SetItems;
+      default;
+    procedure LoadFromString(StringList: TStringList);
+  end;
+
 implementation
+
+{ TAccessLevelList }
+
+function TAccessLevelList.GetItems(index: integer): TAccessLevelItem;
+begin
+  Result := TAccessLevelItem(inherited Items[index]);
+end;
+
+procedure TAccessLevelList.SetItems(Index: integer; AValue: TAccessLevelItem);
+begin
+  items[Index].Assign(AValue);
+end;
+
+constructor TAccessLevelList.Create;
+begin
+  inherited Create(TAccessLevelItem);
+end;
+
+function TAccessLevelList.Add: TAccessLevelItem;
+begin
+  Result := inherited Add as TAccessLevelItem;
+end;
+
+procedure TAccessLevelList.LoadFromString(StringList: TStringList);
+var
+  Inicio, bRapid, bLocalManual, bRemoteManual, bLocalAuto, bRemoteAuto: boolean;
+  I, x: integer;
+  Temp, Parte, Parametro, strNombre, cadena: string;
+  Palabras: SizeInt;
+  dato: TAccessLevelItem;
+begin
+  Inicio := False;
+  I := 0;
+  while I < StringList.Count - 1 do
+  begin
+    cadena := StringList[I];
+    if ((cadena = '#') or AnsiEndsStr(':', Cadena)) and (Inicio = True) then
+    begin
+      i := StringList.Count;
+      inicio := False;
+      if (inicio = True) and (Cadena <> '') then
+      begin
+        cadena := trim(cadena);
+        while AnsiEndsStr('\', Cadena) do
+        begin
+          if I + 1 < StringList.Count then
+          begin
+            Temp := Trim(StringList[I + 1]);
+            if (Pos('-', Temp) = 1) then
+            begin
+              //Retirar barra final  y le añadimos un final
+              Cadena := TrimRightSet(Cadena, ['\']);
+              // Le añadimos la nueva cadena
+              Cadena := Cadena + ' ' + Temp;
+              I := I + 1;
+            end
+            else
+            begin
+              Cadena := TrimRightSet(Cadena, ['\']);
+            end;
+          end
+          else
+          begin
+            Cadena := TrimRightSet(Cadena, ['\']);
+          end;
+        end;
+        strNombre := '';
+        bRapid := False;
+        bLocalManual := False;
+        bLocalAuto := False;
+        bRemoteManual := False;
+        bRemoteAuto := False;
+        Palabras := WordCount(Cadena, ['-']);
+        for x := 1 to Palabras do
+        begin
+          Parte := ExtractWord(X, Cadena, ['-']);
+          Parametro := ExtractWord(1, Parte, [' ']);
+          case Parametro of
+            'Name':
+              strNombre := ExtractWord(2, Parte, [' ']);
+            'Rapid':
+              bRapid := True;
+            'LocalManual':
+              bLocalManual := True;
+            'LocalAuto':
+              bLocalAuto := True;
+            'RemoteManual':
+              bRemoteManual := True;
+            'RemoteAuto':
+              bRemoteAuto := True;
+            else
+              raise EEioError.Create('Fail Reading AccessLevel Seccion');
+          end;
+        end;
+        if strNombre <> '' then
+        begin
+          raise EEioError.Create('Fail Reading AccessLevel Seccion');
+        end;
+        if (bRapid or bLocalManual or bLocalAuto or bRemoteManual or
+          bRemoteAuto) = False then
+        begin
+          raise EEioError.Create('Fail Reading AccessLevel Seccion');
+        end;
+        dato := self.Add;
+        dato.Nombre := strNombre;
+        dato.Rapid := bRapid;
+        dato.LocalAuto := bLocalAuto;
+        dato.LocalManual := bLocalManual;
+        dato.RemoteAuto := bRemoteAuto;
+        dato.RemoteManual := bRemoteManual;
+      end;
+
+      if Cadena = 'EIO_ACCESS:' then
+      begin
+        inicio := True;
+      end;
+    end;
+    I := I + 1;
+  end;
+end;
+
+{ TAccessLevelItem }
+
+constructor TAccessLevelItem.Create(ACollection: TCollection);
+begin
+  if Assigned(ACollection) then
+    inherited Create(ACollection);
+end;
+
 
 { TNetWorkList }
 
@@ -299,7 +470,7 @@ begin
   while I < StringList.Count - 1 do
   begin
     cadena := StringList[I];
-    if ((Cadena = '#') or EndsStr(':',Cadena) ) and (inicio = True) then
+    if ((Cadena = '#') or AnsiEndsStr(':', Cadena)) and (inicio = True) then
     begin
       i := StringList.Count;
       inicio := False;
@@ -307,7 +478,7 @@ begin
     if (inicio = True) and (cadena <> '') then
     begin
       cadena := trim(cadena);
-      while EndsStr('\', Cadena) do
+      while AnsiEndsStr('\', Cadena) do
       begin
         if I + 1 < StringList.Count then
         begin
@@ -369,7 +540,6 @@ begin
       dato.Address := stAddress;
       dato.SubnetMask := stSubnetMask;
       dato.Gateway := stGateway;
-
 
     end;
 
@@ -439,7 +609,7 @@ begin
     if (inicio = True) and (cadena <> '') then
     begin
       cadena := trim(cadena);
-      while EndsStr('\', Cadena) do
+      while AnsiEndsStr('\', Cadena) do
       begin
         if I + 1 < StringList.Count then
         begin
@@ -638,7 +808,7 @@ begin
     begin
       Cadena := trim(Cadena);
       //Fin := False;
-      while EndsStr('\', Cadena) do
+      while AnsiEndsStr('\', Cadena) do
       begin
         if I + 1 < StringList.Count - 1 then
         begin
