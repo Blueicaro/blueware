@@ -5,7 +5,7 @@ unit rw6_eio;
 interface
 
 uses
-  Classes, SysUtils,StrUtils;
+  Classes, SysUtils, StrUtils;
 
 type
   EEioError = class(Exception)
@@ -208,6 +208,8 @@ type
     property MinPhysLimit: string read FMinPhys write FMinPhysLimit;
     property MinBitVal: string read FMinBitVal write FMinBitVal;
     property Size: string read FSize write FSize;
+  public
+    function Exportar: TStringList;
   end;
 
 type
@@ -223,6 +225,9 @@ type
     function Add: TSignalItem;
     property Items[Index: integer]: TSignalItem read GetItems write SetItems; default;
     procedure LoadFromStrings(StringList: TStringList);
+    function GetListaUnidades: TStringList;
+    procedure AddFromCvsList(aLista: TStringList);
+    procedure Exportar(aFilename: TFileName);
   end;
 
 //Redes industriales
@@ -594,13 +599,13 @@ var
   stMinPhysLimit, stMinBitVal, Temp, Valor: string;
   Palabras: SizeInt;
   Inicio: boolean;
-  I, X: integer;
+  I, X, posicion: integer;
 begin
   Inicio := False;
   I := 0;
   while I < StringList.Count - 1 do
   begin
-    cadena := StringList[I];
+    cadena := trim(StringList[I]);
     if (Cadena = '#') and (inicio = True) then
     begin
       i := StringList.Count;
@@ -632,7 +637,8 @@ begin
           Cadena := TrimRightSet(Cadena, ['\']);
         end;
       end;
-      Palabras := WordCount(Cadena, ['-']);
+      if Cadena <> '' then
+        Palabras := WordCount(Cadena, ['-']);
       if Palabras < 2 then
       begin
         raise EEioError.Create('Fail reading file Eio. Seccion EIO_SIGNAL');
@@ -665,7 +671,17 @@ begin
       begin
         Parte := ExtractWord(X, Cadena, ['-']);
         Parametro := ExtractWord(1, Parte, [' ']);
-        Valor := ExtractWord(2, Parte, [' ']);
+
+        if Parametro = 'DeviceMap' then
+        begin
+          Parte := ExtractWordPos(X, Cadena, ['-'], posicion);
+          Cadena := Copy(Cadena, Posicion, Length(Cadena));
+          Valor := ExtractWord(2, Cadena, ['"']);
+        end
+        else
+        begin
+          Valor := ExtractWord(2, Parte, [' ']);
+        end;
         Valor := TrimSet(Valor, ['"']);
         case Parametro of
           'Name':
@@ -715,30 +731,32 @@ begin
         end;
       end;
 
-
-      dato := Self.Add;
-      dato.Nombre := stName;
-      dato.SignalType := stSignalType;
-      dato.DeviceMap := stDeviceMap;
-      dato.Device := stDevice;
-      dato.SignalLabel := stSignalLabel;
-      dato.Category := stCategory;
-      dato.Access := stAccess;
-      dato.DefaultValue := stDefault;
-      dato.SafeLevel := stSafeLevel;
-      dato.FiltPas := stFiltPas;
-      dato.FiltAct := stFiltAct;
-      dato.Invert := stInvert;
-      dato.EncType := stEncType;
-      dato.MaxLog := stMaxLog;
-      dato.MaxPhys := stMaxPhys;
-      dato.MaxPhysLimit := stMaxPhysLimit;
-      dato.MaxBitVal := stMaxBitVal;
-      dato.MinLog := stMinLog;
-      dato.MinPhys := stMinPhys;
-      dato.MinPhysLimit := stMinPhysLimit;
-      dato.MinBitVal := stMinBitVal;
-      dato.Size := stSize;
+      if Palabras > 0 then
+      begin
+        dato := Self.Add;
+        dato.Nombre := stName;
+        dato.SignalType := stSignalType;
+        dato.DeviceMap := stDeviceMap;
+        dato.Device := stDevice;
+        dato.SignalLabel := stSignalLabel;
+        dato.Category := stCategory;
+        dato.Access := stAccess;
+        dato.DefaultValue := stDefault;
+        dato.SafeLevel := stSafeLevel;
+        dato.FiltPas := stFiltPas;
+        dato.FiltAct := stFiltAct;
+        dato.Invert := stInvert;
+        dato.EncType := stEncType;
+        dato.MaxLog := stMaxLog;
+        dato.MaxPhys := stMaxPhys;
+        dato.MaxPhysLimit := stMaxPhysLimit;
+        dato.MaxBitVal := stMaxBitVal;
+        dato.MinLog := stMinLog;
+        dato.MinPhys := stMinPhys;
+        dato.MinPhysLimit := stMinPhysLimit;
+        dato.MinBitVal := stMinBitVal;
+        dato.Size := stSize;
+      end;
 
     end;
 
@@ -747,10 +765,69 @@ begin
     begin
       inicio := True;
     end;
-
+    if (Cadena = '#') and (inicio = True) then
+    begin
+      inicio := False;
+    end;
     I := I + 1;
   end;
 
+end;
+
+function TSignalList.GetListaUnidades: TStringList;
+var
+  I: integer;
+  Carta: string;
+begin
+  Result := TStringList.Create;
+  Result.Sorted := True;
+  Result.Duplicates := dupIgnore;
+  for I := 0 to Self.Count - 1 do
+  begin
+    Carta := Self.GetItems(I).Device;
+    Result.Add(Carta);
+  end;
+end;
+
+procedure TSignalList.AddFromCvsList(aLista: TStringList);
+var
+  I: integer;
+  Punto: TSignalItem;
+  Cadena: string;
+begin
+  for I := 0 to aLista.Count - 1 do
+  begin
+    Cadena := aLista[I];
+    if WordCount(Cadena, [',']) > 2 then
+    begin
+      Punto := Self.Add;
+      Punto.Nombre := ExtractWord(1, Cadena, [',']);
+      { TODO : Continuar }    end;
+  end;
+end;
+
+procedure TSignalList.Exportar(aFilename: TFileName);
+var
+  ArchivoFinal, Lineas: TStringList;
+  I: integer;
+begin
+  ArchivoFinal := TStringList.Create;
+  ArchivoFinal.Add('EIO:CFG_1.0:6:1::');
+  ArchivoFinal.Add('#');
+  ArchivoFinal.Add('EIO_SIGNAL:');
+  try
+    // Lineas := TStringList.Create;
+    for I := 0 to Self.Count - 1 do
+    begin
+      //Line//as.Clear;
+      Lineas := Self.Items[I].Exportar;
+      ArchivoFinal.AddStrings(Lineas);
+      Lineas.Free;
+    end;
+  finally
+    ArchivoFinal.SaveToFile(aFilename);
+    FreeAndNil(ArchivoFinal);
+  end;
 end;
 
 { TSignalItem }
@@ -759,6 +836,143 @@ constructor TSignalItem.Create(ACollection: TCollection);
 begin
   if Assigned(ACollection) then
     inherited Create(ACollection);
+end;
+
+function TSignalItem.Exportar: TStringList;
+var
+  Cadena: string;
+  temp: string;
+
+  procedure NuevoCampo;
+  begin
+    if Length(Cadena) + Length(Temp) < 80 then
+    begin
+      Cadena := Cadena + Temp;
+    end
+    else
+    begin
+      Result.Add(#09 + Cadena + '\');
+      Cadena := Temp;
+    end;
+  end;
+
+begin
+  Result := TStringList.Create;
+  Result.Add('');
+  Cadena := Format('-Name "%s" -SignalType "%s"',
+    [Nombre, SignalType, Device, DeviceMap]);
+
+  if Device <> '' then
+  begin
+    Cadena := Cadena + Format(' -Device "%s" -DeviceMap "%s"', [Device, DeviceMap]);
+  end;
+
+  if Category <> '' then
+  begin
+    Temp := Format(' -Category "%s"', [Category]);
+    NuevoCampo;
+  end;
+
+
+  if SignalLabel <> '' then
+  begin
+    Temp := Format(' -Label "%s"', [SignalLabel]);
+    NuevoCampo;
+  end;
+
+
+  if FiltAct <> '' then
+  begin
+    Temp := Format(' -FiltAct "%s"', [FiltAct]);
+    NuevoCampo;
+  end;
+
+  if FiltPas <> '' then
+  begin
+    Temp := Format(' -FiltPas "%s"', [FiltPas]);
+    NuevoCampo;
+  end;
+
+  if DefaultValue <> '' then
+  begin
+    Temp := Format(' -DefaultValue "%s"', [DefaultValue]);
+    NuevoCampo;
+  end;
+
+  if SafeLevel <> '' then
+  begin
+    temp := Format(' -SafeLevel "%s"', [SafeLevel]);
+    NuevoCampo;
+  end;
+
+  if Invert <> '' then
+  begin
+    temp := Format(' -Invert "%s"', [Invert]);
+    NuevoCampo;
+  end;
+
+  if EncType <> '' then
+  begin
+    temp := Format(' -EncType "%s"', [EncType]);
+    NuevoCampo;
+  end;
+
+  if MaxLog <> '' then
+  begin
+    temp := Format(' -MaxLog "%s"', [MaxLog]);
+    NuevoCampo;
+  end;
+
+  if MaxPhys <> '' then
+  begin
+    temp := Format(' -MaxPhys "%s"', [MaxLog]);
+    NuevoCampo;
+  end;
+
+  if MaxPhysLimit <> '' then
+  begin
+    temp := Format(' -MaxPhysLimit "%s"', [MaxPhysLimit]);
+    NuevoCampo;
+  end;
+
+  if MaxBitVal <> '' then
+  begin
+    temp := Format(' -MaxBitVal "%s"', [MaxBitVal]);
+    NuevoCampo;
+  end;
+
+  if MinLog <> '' then
+  begin
+    temp := Format(' -MinLog "%s"', [MinLog]);
+    NuevoCampo;
+  end;
+
+  if MinPhys <> '' then
+  begin
+    temp := Format(' -MinPhys "%s"', [MinPhys]);
+    NuevoCampo;
+  end;
+
+  if MinPhysLimit <> '' then
+  begin
+    temp := Format(' -MinPhysLimit "%s"', [MinPhysLimit]);
+    NuevoCampo;
+  end;
+
+  if MinBitVal <> '' then
+  begin
+    temp := Format(' -MinBitVal "%s"', [MinPhysLimit]);
+    NuevoCampo;
+  end;
+
+  temp := ' -Size 1';
+  NuevoCampo;
+
+  if Cadena <> '' then
+  begin
+    Result.Add(#09 + Cadena);
+  end;
+
 end;
 
 { TCrossConnectionList }

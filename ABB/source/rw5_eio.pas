@@ -1,7 +1,7 @@
-{ TODO : Hacer  test }
-unit rw56_eio;
+unit rw5_eio;
 
 {$mode objfpc}{$H+}
+
 
 interface
 
@@ -56,6 +56,8 @@ type
     FArg4: string;
     FArg5: string;
     FArg6: string;
+    FArg7: string;
+    FArg8: string;
     Fstatus: string;
   public
     constructor Create(ACollection: TCollection); override;
@@ -158,7 +160,7 @@ type
     FAccess: string;
     FCategory: string;
     FDefaultValue: string;
-    FUnitMap: string;
+    UnitMap: string;
     FEncType: string;
     FFiltAct: string;
     FFiltPas: string;
@@ -182,7 +184,7 @@ type
     property Nombre: string read FNombre write FNombre;
     property SignalType: string read FSignalType write FSignalType;
     property Unidad: string read FUnidad write FUnidad;
-    property UnitMap: string read FUnitMap write FUnitMap;
+    property UnitMap: string read UnitMap write UnitMap;
     property SignalLabel: string read FSignalLabel write FSignalLabel;
     property Category: string read FCategory write FCategory;
     property Access: string read FAccess write FAccess;
@@ -209,7 +211,6 @@ type
 
   TSignalList = class(TCollection)
   private
-
     function GetItems(Index: integer): TSignalItem;
     procedure SetItems(Index: integer; AValue: TSignalItem);
   public
@@ -217,7 +218,6 @@ type
     function Add: TSignalItem;
     property Items[Index: integer]: TSignalItem read GetItems write SetItems; default;
     procedure LoadFromStrings(StringList: TStringList);
-    function GetListaUnidades: TStringList;
   end;
 
 
@@ -229,8 +229,6 @@ function TSignalList.GetItems(Index: integer): TSignalItem;
 begin
   Result := TSignalItem(inherited Items[index]);
 end;
-
-
 
 procedure TSignalList.SetItems(Index: integer; AValue: TSignalItem);
 begin
@@ -383,8 +381,8 @@ begin
       dato := Self.Add;
       dato.Nombre := stName;
       dato.SignalType := stSignalType;
+      dato.Unidad := stUnitMap;
       dato.Unidad := stUnidad;
-      dato.UnitMap:=stUnitMap;
       dato.SignalLabel := stSignalLabel;
       dato.Category := stCategory;
       dato.Access := stAccess;
@@ -413,22 +411,6 @@ begin
     end;
 
     I := I + 1;
-  end;
-
-end;
-
-function TSignalList.GetListaUnidades: TStringList;
-var
-  I: integer;
-  Carta: String;
-begin
-  Result := TStringList.Create;
-  Result.Sorted := True;
-  Result.Duplicates := dupIgnore;
-  for I := 0 to Self.Count - 1 do
-  begin
-    Carta:= Self.GetItems(I).Unidad;
-    Result.Add(Carta);
   end;
 
 end;
