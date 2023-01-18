@@ -596,7 +596,7 @@ var
   stDeviceMap, stSignalLabel, stCategory, stAccess, stDefault,
   stSafeLevel, stFiltPas, stFiltAct, stInvert, stEncType, stMaxLog,
   stMaxPhys, stMaxPhysLimit, stMaxBitVal, stMinLog, stMinPhys,
-  stMinPhysLimit, stMinBitVal, Temp, Valor: string;
+  stMinPhysLimit, stMinBitVal, Temp, Valor, stTemp: string;
   Palabras: SizeInt;
   Inicio: boolean;
   I, X, posicion: integer;
@@ -675,8 +675,8 @@ begin
         if Parametro = 'DeviceMap' then
         begin
           Parte := ExtractWordPos(X, Cadena, ['-'], posicion);
-          Cadena := Copy(Cadena, Posicion, Length(Cadena));
-          Valor := ExtractWord(2, Cadena, ['"']);
+          stTemp := Copy(Cadena, Posicion, Length(Cadena));
+          Valor := ExtractWord(2, stTemp, ['"']);
         end
         else
         begin
@@ -789,20 +789,41 @@ begin
   end;
 end;
 
+{ #todo : Seguir añadiendo campos }
+{
+
+Nombre,Carta(device),Tipo Senal,Canal,Categoria,Descripcion
+}
 procedure TSignalList.AddFromCvsList(aLista: TStringList);
 var
   I: integer;
-  Punto: TSignalItem;
-  Cadena: string;
+  Senal: TSignalItem;
+  Cadena, stTemp: string;
 begin
   for I := 0 to aLista.Count - 1 do
   begin
     Cadena := aLista[I];
     if WordCount(Cadena, [',']) > 2 then
     begin
-      Punto := Self.Add;
-      Punto.Nombre := ExtractWord(1, Cadena, [',']);
-      { TODO : Continuar }    end;
+      Senal := Self.Add;
+      Senal.Nombre := trim(ExtractWord(1, Cadena, [',']));
+      stTemp := trim(ExtractWord(1, Cadena, [',']));
+
+      Senal.Device := Trim(ExtractWord(2, Cadena, [',']));
+      stTemp := trim(ExtractWord(2, Cadena, [',']));
+
+      Senal.SignalType := Trim(ExtractWord(3, Cadena, [',']));
+      stTemp := trim(ExtractWord(3, Cadena, [',']));
+
+      Senal.DeviceMap := Trim(ExtractWord(4, Cadena, [',']));
+      stTemp := trim(ExtractWord(4, Cadena, [',']));
+
+      Senal.Category := Trim(ExtractWord(5, Cadena, [',']));
+      stTemp := trim(ExtractWord(5, Cadena, [',']));
+
+      Senal.SignalLabel := Trim(ExtractWord(6, Cadena, [',']));
+      stTemp := trim(ExtractWord(5, Cadena, [',']));
+    end;
   end;
 end;
 
