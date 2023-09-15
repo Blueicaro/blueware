@@ -1,0 +1,7 @@
+object ModuloAcciones: TModuloAcciones
+  OldCreateOrder = False
+  Height = 246
+  HorizontalOffset = 661
+  VerticalOffset = 330
+  Width = 383
+end

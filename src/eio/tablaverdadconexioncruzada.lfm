@@ -1,0 +1,23 @@
+object TablaVerdadConexionCruzadafrm: TTablaVerdadConexionCruzadafrm
+  Left = 0
+  Height = 388
+  Top = 0
+  Width = 689
+  ClientHeight = 388
+  ClientWidth = 689
+  TabOrder = 0
+  DesignLeft = 461
+  DesignTop = 31
+  object stgTablaVerdad: TStringGrid
+    Left = 0
+    Height = 388
+    Top = 0
+    Width = 689
+    Align = alClient
+    ColCount = 0
+    FixedCols = 0
+    FixedRows = 0
+    RowCount = 0
+    TabOrder = 0
+  end
+end

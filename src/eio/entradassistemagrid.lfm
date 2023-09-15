@@ -1,0 +1,60 @@
+object EntradassistemaFrame: TEntradassistemaFrame
+  Left = 0
+  Height = 240
+  Top = 0
+  Width = 320
+  Align = alClient
+  ClientHeight = 240
+  ClientWidth = 320
+  OnExit = FrameExit
+  TabOrder = 0
+  DesignLeft = 705
+  DesignTop = 440
+  object GridEntradasSistema: TStringGrid
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 320
+    Align = alClient
+    ColCount = 11
+    Columns = <    
+      item
+        Title.Caption = 'Action'
+      end    
+      item
+        Title.Caption = 'Signal Name'
+      end    
+      item
+        Title.Caption = 'Arg1'
+      end    
+      item
+        Title.Caption = 'Arg2'
+      end    
+      item
+        Title.Caption = 'Arg3'
+      end    
+      item
+        Title.Caption = 'Arg4'
+      end    
+      item
+        Title.Caption = 'Arg5'
+      end    
+      item
+        Title.Caption = 'Arg6'
+      end    
+      item
+        Title.Caption = 'Arg7'
+      end    
+      item
+        Title.Caption = 'Arg8'
+      end    
+      item
+        Title.Caption = 'Arg9'
+      end>
+    FixedCols = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goColMoving, goThumbTracking, goSmoothScroll]
+    RowCount = 1
+    TabOrder = 0
+    OnExit = GridEntradasSistemaExit
+  end
+end

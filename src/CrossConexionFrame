@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <grid version="3">
+    <saveoptions create="True" position="False" content="False"/>
+    <design columncount="11" rowcount="8" fixedcols="0" fixedrows="1" defaultcolwidth="64" isdefaultcolwidth="0" defaultrowheight="22" isdefaultrowheight="0" color="clWindow">
+      <columns columnsenabled="True" columncount="11">
+        <column0>
+          <index value="0"/>
+          <width value="183"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Name"/>
+          </title>
+        </column0>
+        <column1>
+          <index value="1"/>
+          <width value="140"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Result"/>
+          </title>
+        </column1>
+        <column2>
+          <index value="2"/>
+          <width value="230"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Actor 1"/>
+          </title>
+        </column2>
+        <column3>
+          <index value="3"/>
+          <width value="198"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Oper1"/>
+          </title>
+        </column3>
+        <column4>
+          <index value="4"/>
+          <width value="258"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Actor 2"/>
+          </title>
+        </column4>
+        <column5>
+          <index value="5"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Oper2"/>
+          </title>
+        </column5>
+        <column6>
+          <index value="6"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Actor 3"/>
+          </title>
+        </column6>
+        <column7>
+          <index value="7"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Oper3"/>
+          </title>
+        </column7>
+        <column8>
+          <index value="8"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Actor 4"/>
+          </title>
+        </column8>
+        <column9>
+          <index value="9"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Oper4"/>
+          </title>
+        </column9>
+        <column10>
+          <index value="10"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Actor 5"/>
+          </title>
+        </column10>
+      </columns>
+      <options>
+        <goFixedVertLine value="True"/>
+        <goFixedHorzLine value="True"/>
+        <goVertLine value="True"/>
+        <goHorzLine value="True"/>
+        <goRangeSelect value="True"/>
+        <goDrawFocusSelected value="False"/>
+        <goRowSizing value="False"/>
+        <goColSizing value="True"/>
+        <goRowMoving value="False"/>
+        <goColMoving value="False"/>
+        <goEditing value="False"/>
+        <goAutoAddRows value="False"/>
+        <goTabs value="False"/>
+        <goRowSelect value="False"/>
+        <goAlwaysShowEditor value="False"/>
+        <goThumbTracking value="True"/>
+        <goColSpanning value="False"/>
+        <goRelaxedRowSelect value="False"/>
+        <goDblClickAutoSize value="False"/>
+        <goSmoothScroll value="True"/>
+        <goAutoAddRowsSkipContentCheck value="False"/>
+        <goRowHighlight value="False"/>
+        <goScrollToLastCol value="False"/>
+        <goScrollToLastRow value="False"/>
+      </options>
+    </design>
+  </grid>
+</CONFIG>
