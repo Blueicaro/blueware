@@ -1,19 +1,19 @@
 object Form1: TForm1
   Left = 2655
-  Height = 591
+  Height = 556
   Top = 261
-  Width = 880
+  Width = 828
   Caption = 'Form1'
-  ClientHeight = 591
-  ClientWidth = 880
-  DesignTimePPI = 102
+  ClientHeight = 556
+  ClientWidth = 828
   OnCreate = FormCreate
-  LCLVersion = '2.0.10.0'
+  Position = poWorkAreaCenter
+  LCLVersion = '3.0.0.1'
   object Memo1: TMemo
     Left = 8
-    Height = 176
-    Top = 24
-    Width = 854
+    Height = 166
+    Top = 23
+    Width = 855
     Anchors = [akTop, akLeft, akRight]
     Lines.Strings = (
       'INDUSTRIAL_NETWORK:'
@@ -26,20 +26,20 @@ object Form1: TForm1
     TabOrder = 0
   end
   object Memo2: TMemo
-    Left = 16
-    Height = 232
-    Top = 256
-    Width = 736
+    Left = 15
+    Height = 218
+    Top = 241
+    Width = 693
     Lines.Strings = (
       'Memo2'
     )
     TabOrder = 1
   end
   object Button1: TButton
-    Left = 292
-    Height = 27
-    Top = 219
-    Width = 80
+    Left = 275
+    Height = 25
+    Top = 206
+    Width = 75
     Caption = 'Button1'
     OnClick = Button1Click
     TabOrder = 2
