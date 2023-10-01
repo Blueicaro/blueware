@@ -1,6 +1,0 @@
-Editor de puntos:
-	Aplicar offset a un punto
-	Aplicar offset a multiples puntos
-	Aplicar offset a instruccion de movimiento
-	Aplicar offset a multiples instrucciones de movimiento
-	
