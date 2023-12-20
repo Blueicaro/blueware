@@ -1,18 +1,18 @@
 object mainfrm: Tmainfrm
   Left = -8
-  Height = 995
+  Height = 1034
   Top = -8
-  Width = 1001
+  Width = 1017
   Caption = 'BlueWare'
-  ClientHeight = 972
-  ClientWidth = 1001
+  ClientHeight = 1011
+  ClientWidth = 1017
   OnCreate = FormCreate
   WindowState = wsMaximized
   object SpkToolbar1: TSpkToolbar
     Left = 0
     Height = 112
     Top = 0
-    Width = 1001
+    Width = 1017
     Appearance.Tab.TabHeaderFont.Color = 9126421
     Appearance.Tab.BorderColor = 14922381
     Appearance.Tab.CornerRadius = 4
@@ -68,7 +68,7 @@ object mainfrm: Tmainfrm
     Appearance.Element.ActiveInnerDarkColor = 961020
     Appearance.Element.ActiveCaptionColor = 8405614
     Appearance.Element.Style = esRounded
-    TabIndex = 1
+    TabIndex = 0
     MenuButtonCaption = 'Menu'
     Tabs = (
       'SpkTab1'
@@ -134,6 +134,7 @@ object mainfrm: Tmainfrm
       Caption = 'Rapid'
       Panes = (
         'spkRapidFile'
+        'SpkPane5'
       )
       object spkRapidFile: TSpkPane
         Caption = 'File'
@@ -153,6 +154,20 @@ object mainfrm: Tmainfrm
         object spkOpenModule: TSpkLargeButton
           Action = acOpenModule
           Caption = 'Open Module'
+        end
+      end
+      object SpkPane5: TSpkPane
+        Caption = 'Module'
+        Items = (
+          'SpkLargeButton10'
+          'SpkLargeButton11'
+        )
+        object SpkLargeButton10: TSpkLargeButton
+          Caption = 'Button'
+        end
+        object SpkLargeButton11: TSpkLargeButton
+          Action = acAsteriscos
+          Caption = 'Change to *'
         end
       end
     end
@@ -458,6 +473,11 @@ object mainfrm: Tmainfrm
     object acOpenBackup: TAction
       Category = 'Backup'
       Caption = 'Open Backup'
+    end
+    object acAsteriscos: TAction
+      Category = 'Module'
+      Caption = 'Change to *'
+      OnExecute = acAsteriscosExecute
     end
   end
 end

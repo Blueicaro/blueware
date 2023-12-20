@@ -30,12 +30,15 @@ type
     acOpenModule: TAction;
     acOpenBackup: TAction;
     acCrossTablaVerdad: TAction;
+    acAsteriscos: TAction;
     ElogShowProperties: TAction;
     ActionList1: TActionList;
     AccionesRapid: TActionList;
     OpenDialog1: TOpenDialog;
     spkEioLocal: TSpkLargeButton;
     SpkLargeButton1: TSpkLargeButton;
+    SpkLargeButton10: TSpkLargeButton;
+    SpkLargeButton11: TSpkLargeButton;
     spkOpenBackup: TSpkLargeButton;
     spkOpenProgram: TSpkLargeButton;
     spkOpenModule: TSpkLargeButton;
@@ -57,6 +60,7 @@ type
     SpkPane2: TSpkPane;
     SpkPane3: TSpkPane;
     SpkPane4: TSpkPane;
+    SpkPane5: TSpkPane;
     SpkPane6: TSpkPane;
     EioTab: TSpkTab;
     spkRapidFile: TSpkPane;
@@ -66,6 +70,7 @@ type
     SpkToolbar1: TSpkToolbar;
     procedure acAbrirEioExecute(Sender: TObject);
     procedure acAbrirElogExecute(Sender: TObject);
+    procedure acAsteriscosExecute(Sender: TObject);
     procedure acBorrarEioExecute(Sender: TObject);
     procedure acCrossTablaVerdadExecute(Sender: TObject);
     procedure acDeleteElogExecute(Sender: TObject);
@@ -175,6 +180,16 @@ begin
     end;
     Elog.BringToFront;
   end;
+end;
+
+procedure Tmainfrm.acAsteriscosExecute(Sender: TObject);
+begin
+  if Rapid = nil then
+  begin
+    Exit;
+  end;
+ Rapid.PuntoAsterisco;
+
 end;
 
 procedure Tmainfrm.acBorrarEioExecute(Sender: TObject);

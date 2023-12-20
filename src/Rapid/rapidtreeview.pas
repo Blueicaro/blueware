@@ -30,6 +30,7 @@ type
     destructor Destroy; override;
   public
     procedure CargarModulo(Filename: TFileName);
+    procedure PuntoAsterisco;
   end;
 
 implementation
@@ -85,6 +86,20 @@ begin
   finally
     ListaModules.Add(Filename);
   end;
+end;
+
+procedure TRapidTreeViewFrm.PuntoAsterisco;
+var
+  I: Integer;
+begin
+ For I := 0 To Self.ComponentCount-1 do
+ begin
+    if Self.Components[I] is TEditModuleFrm then
+    begin
+      with Self.Components[I] as TEditModuleFrm do
+       PonerAsteriscos;
+    end;
+ end;
 end;
 
 end.

@@ -23,7 +23,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules"/>
+            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -63,7 +63,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules"/>
+            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -93,7 +93,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules"/>
+            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -117,12 +117,13 @@
               <TrashVariables Value="True"/>
               <UseExternalDbgSyms Value="True"/>
             </Debugging>
-            <Options>
-              <Win32>
-                <GraphicApplication Value="True"/>
-              </Win32>
-            </Options>
           </Linking>
+          <Other>
+            <CustomOptions Value="-ddebug"/>
+            <OtherDefines Count="1">
+              <Define0 Value="debug"/>
+            </OtherDefines>
+          </Other>
         </CompilerOptions>
       </Item>
       <Item Name="Release_Windows">
@@ -133,7 +134,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules"/>
+            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -327,6 +328,19 @@
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="TablaVerdadConexionCruzada"/>
       </Unit>
+      <Unit>
+        <Filename Value="../RapidTools/CadenasUtiles.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../RapidTools/FuncionesRapid.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../RapidTools/rapid.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Rapid"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -336,7 +350,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules"/>
+      <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

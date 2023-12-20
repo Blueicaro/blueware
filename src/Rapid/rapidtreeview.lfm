@@ -28,7 +28,6 @@ object RapidTreeViewFrm: TRapidTreeViewFrm
         Top = 0
         Width = 192
         Align = alClient
-        ShowSeparators = False
         TabOrder = 0
       end
     end
@@ -42,7 +41,6 @@ object RapidTreeViewFrm: TRapidTreeViewFrm
         Top = 0
         Width = 192
         Align = alClient
-        ShowSeparators = False
         TabOrder = 0
       end
     end
@@ -56,7 +54,6 @@ object RapidTreeViewFrm: TRapidTreeViewFrm
         Top = 0
         Width = 192
         Align = alClient
-        ShowSeparators = False
         TabOrder = 0
         OnClick = trvModulesClick
       end

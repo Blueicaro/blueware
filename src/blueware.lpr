@@ -13,8 +13,9 @@ uses
   Forms, lazcontrols, comun, FicherosEioFrame, main, paramcomun,
   entradassalidasgrid, entradassistemagrid, salidassistemagrid,
   crossconnexiongrid, ImportEioExcel, gridSignals, importareiodlg,
-  nombreimportareio, ElogTreeView, ElogUnit, eloggrid, ElogPropiedades, 
-RapidTreeView, Modules, editmodule, TablaVerdadConexionCruzada;
+  nombreimportareio, ElogTreeView, ElogUnit, eloggrid, ElogPropiedades,
+  RapidTreeView, Modules, Rapid, FuncionesRapid, CadenasUtiles, editmodule,
+  TablaVerdadConexionCruzada;
 
 {$R *.res}
 
