@@ -41,15 +41,16 @@ procedure TEditModuleFrm.PonerAsteriscos;
 const
   Ordenes: array [1..2] of string = ('movej', 'movel');
 var
-  Puntos, Temp: TStringList;
-  I, Indice: integer;
-  Cadena, Nombre, Valor: string;
+  Temp: TStringList;
+  I, Indice, x: integer;
+  Cadena, Nombre, Valor, stTemp: string;
 begin
   Temp := TStringList.Create;
   try
     Temp.Clear;
     Temp.Sorted := True;
     Temp.Duplicates := dupIgnore;
+    Memo.BeginUpdateBounds;
     for I := 0 to Memo.Lines.Count - 1 do
     begin
       Cadena := Memo.Lines[I];
@@ -71,24 +72,30 @@ begin
       end;
     end;
     //Borrar los puntos encontrados
-    { #todo : Seguir aquí }
     for I := 0 to Temp.Count - 1 do
     begin
       if FModule.RobTargets.FindRobTarget(Temp[I], Indice) then
       begin
         Valor := FModule.RobTargets.Item[Indice].RobTargerToStringEx;
         Valor := Valor + ';';
-        if Memo.Lines.(Valor) > -1 then
+        x := 0;
+        while x < Memo.Lines.Count do
         begin
-          Memo.Lines.Delete(Indice);
+          stTemp := Trim(Memo.Lines[X]);
+          if CompareText(Valor, stTemp) = 0 then
+          begin
+            Memo.Lines.Delete(X);
+            break;
+          end;
+          X := X + 1;
         end;
         FModule.RobTargets.Delete(Indice);
       end;
-
     end;
   finally
+    { #todo : Poner aviso o mensaje indicando el número de puntos convertidos }
     FreeAndNil(Temp);
-
+    Memo.EndUpdateBounds;
   end;
 end;
 
