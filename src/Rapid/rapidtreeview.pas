@@ -73,6 +73,9 @@ end;
 procedure TRapidTreeViewFrm.CargarModulo(Filename: TFileName);
 var
   Editor: TEditModuleFrm;
+  Lista: TStringList;
+  Nodo: TTreeNode;
+  I: integer;
 begin
   try
     ContadorEditores := ContadorEditores + 1;
@@ -81,8 +84,17 @@ begin
     Editor.Parent := ContenedorEditores;
     Editor.Align := alClient;
     Editor.LoadModule(FileName);
+    Nodo := trvModules.Items.AddObject(nil, ExtractFileName(Filename), Editor);
+    try
+    //  Lista := Editor.ListaDeRutinas;
+    //  for I := 0 to Lista.Count - 1 do
+    //  begin
+    //    trvModules.Items.Add(Nodo, Lista[i]);
+    //  end;
+    finally
+    //  FreeAndNil(Lista);
+    end;
     Editor.BringToFront;
-    trvModules.Items.AddObject(nil, ExtractFileName(Filename), Editor);
   finally
     ListaModules.Add(Filename);
   end;
@@ -90,16 +102,16 @@ end;
 
 procedure TRapidTreeViewFrm.PuntoAsterisco;
 var
-  I: Integer;
+  I: integer;
 begin
- For I := 0 To Self.ComponentCount-1 do
- begin
+  for I := 0 to Self.ComponentCount - 1 do
+  begin
     if Self.Components[I] is TEditModuleFrm then
     begin
       with Self.Components[I] as TEditModuleFrm do
-       PonerAsteriscos;
+        PonerAsteriscos;
     end;
- end;
+  end;
 end;
 
 end.

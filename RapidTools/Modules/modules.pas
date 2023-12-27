@@ -15,6 +15,7 @@ type
 
   private
     FFichero: TStringList;
+    FListRoutines: TStringList;
     FNombre: string;
     FRobTargetDataList: TRobTargetDataList;
     procedure Procesar;
@@ -25,6 +26,8 @@ type
       read FRobTargetDataList write FRobTargetDataList;
   public
     procedure CargarModulo(FileName: TFileName);
+
+    property GetListRoutinas:TStringList read FListRoutines;
   public
     constructor Create;
     destructor Destroy; override;
@@ -40,18 +43,21 @@ var
   ListaPuntos: TStringList;
   Punto: TRobTargetData;
   I: Integer;
+  Cadena: String;
 begin
   try
     ListaPuntos := BuscaPuntosEx(FFichero);
     for I := 0 to ListaPuntos.Count - 1 do
     begin
      Punto :=  FRobTargetDataList.Add;
+     Cadena := ListaPuntos[I];
      Punto.fStrToRobTarget(ListaPuntos[I]);
     end;
 
   finally
     FreeAndNil(ListaPuntos);
   end;
+  FListRoutines := ListaRutinas(FFichero);
 end;
 
 procedure TModule.CargarModulo(FileName: TFileName);
@@ -61,14 +67,18 @@ begin
   Procesar;
 end;
 
+
+
 constructor TModule.Create;
 begin
   FFichero := TStringList.Create;
+  FListRoutines := TStringList.Create;
   FRobTargetDataList := TRobTargetDataList.Create(TRobTargetData);
 end;
 
 destructor TModule.Destroy;
 begin
+  FreeAndNil(FFichero);
   FreeAndNil(FRobTargetDataList);
   FreeAndNil(FFichero);
   inherited Destroy;

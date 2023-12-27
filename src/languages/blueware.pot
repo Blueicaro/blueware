@@ -1,0 +1,15 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: trapidtreeviewfrm.tabbackups.caption
+msgid "Backups"
+msgstr ""
+
+#: trapidtreeviewfrm.tabmodules.caption
+msgid "Modules"
+msgstr ""
+
+#: trapidtreeviewfrm.tabprograms.caption
+msgid "Programs"
+msgstr ""
+

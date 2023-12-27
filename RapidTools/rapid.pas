@@ -225,11 +225,12 @@ type
     property Item[Index: integer]: TRobTargetData read GetItem;
     property GetRobTargetDataItem[Index: integer]: TRobTargetData read GetItem;
     function GetRobotTarget(aNombre: string; var RobTarget: TRobTargetData): integer;
-    function FindRobTarget(Nombre: string; Var index:integer): Boolean;
+    function FindRobTarget(Nombre: string; var index: integer): boolean;
   end;
 
 implementation
 
+uses LazLogger;
 {Recibe una cadena del tipo [aa,bb,c] sin los corchetes y en un TStringList,
 dónde cada elemento seria lo que hay entre los corchetes sin las comillas:
 Elemento 0 = aa
@@ -460,8 +461,7 @@ begin
 
 end;
 
-function TRobTargetDataList.FindRobTarget(Nombre: string; var index: integer
-  ): Boolean;
+function TRobTargetDataList.FindRobTarget(Nombre: string; var index: integer): boolean;
 var
   i: integer;
 begin
@@ -472,9 +472,9 @@ begin
     if CompareText(Self.Item[I].Nombre, Nombre) = 0 then
     begin
       index := I;
-      Exit(True)
+      Exit(True);
     end;
-    I := I +1;
+    I := I + 1;
   end;
 
 end;
@@ -486,13 +486,16 @@ var
   lsTemp: TStringList;
   P, Elementos: SizeInt;
   Cadena, stTemp, Cabecera: string;
+  ProximPalabra: integer;
 begin
   //[[860.325,313.451,299.57],[0.22747,-0.626972,-0.316036,-0.674748],[-1,-1,-2,0],[150,9E+09,9E+09,9E+09,9E+09,9E+09]]
   { TODO : Colocar excepciones }
-  { TODO : Si los datos de la cadena no son completos. Falla. Se queda en un blucle infinito }
-  lsTemp := TStringList.Create;
-  Cadena := trim(aString);
+ { TODO : Si los datos de la cadena no son completos. Falla. Se queda en un blucle infinito }
 
+  DebugLn({$I %CURRENTROUTINE%});
+
+  Cadena := trim(aString);
+  DebugLn(Cadena);
   if Cadena[Length(Cadena)] = ';' then
   begin
     Cadena := Copy(Cadena, 1, length(Cadena) - 1);
@@ -508,8 +511,23 @@ begin
   end
   else
   begin
-    { TODO : Introducir excepción }
+    { TODO : No tiene datos debe ser un VAR }
+    Cadena := trim(cadena);
+    ProximPalabra := 1;
+    if WordCount(Cadena, [#32]) = 4 then
+    begin
+      FLocal := True;
+      ProximPalabra := 2;
+    end;
+
+    FTipo:=ExtractWord(ProximPalabra, Cadena, [#32]);
+    FNombre :=ExtractWord( ProximPalabra + 2, Cadena, [#32]);
+    DebugLn('FTipo: '+FTipo);
+    Debugln('Fnombre: '+Fnombre);
+
+    exit;
   end;
+  lsTemp := TStringList.Create;
   //Procesar Cabecera
   if Length(Cabecera) > 1 then
   begin

@@ -14,9 +14,9 @@ object RapidTreeViewFrm: TRapidTreeViewFrm
     Height = 539
     Top = 0
     Width = 200
-    ActivePage = tabModules
+    ActivePage = tabPrograms
     Align = alLeft
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 0
     object tabBackups: TTabSheet
       Caption = 'Backups'

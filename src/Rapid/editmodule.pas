@@ -14,10 +14,13 @@ type
   TEditModuleFrm = class(TFrame)
     Memo: TMemo;
   private
+    FListaDeRutinas: TStringList;
     FModule: TModule;
+    function GetListaTutines:TStringList;
   public
     procedure LoadModule(Filename: TFileName);
     procedure PonerAsteriscos;
+    property ListaDeRutinas:TStringList read GetListaTutines;
   public
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
@@ -31,10 +34,17 @@ uses FuncionesRapid, LazLogger;
 
   { TEditModuleFrm }
 
+function TEditModuleFrm.GetListaTutines: TStringList;
+begin
+  Result := TStringList.Create;
+  REsult.Assign(FListaDeRutinas);
+end;
+
 procedure TEditModuleFrm.LoadModule(Filename: TFileName);
 begin
   FModule.CargarModulo(Filename);
   Memo.Lines.Text := FModule.Fichero.Text;
+  FListaDeRutinas.Assign(FModule.GetListRoutinas);
 end;
 
 procedure TEditModuleFrm.PonerAsteriscos;
@@ -102,12 +112,15 @@ end;
 constructor TEditModuleFrm.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
+  FListaDeRutinas := TStringList.Create;
   FModule := TModule.Create;
 end;
 
 destructor TEditModuleFrm.Destroy;
 begin
+   FreeAndNil(FListaDeRutinas);
   FreeAndNil(FModule);
+
   inherited Destroy;
 end;
 
