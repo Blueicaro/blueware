@@ -1,5 +1,7 @@
 unit Modules;
-
+{
+ Rapid Modules
+}
 {$mode ObjFPC}{$H+}
 
 interface

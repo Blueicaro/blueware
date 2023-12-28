@@ -27,7 +27,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools"/>
+            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools;../RapidTools/Routines"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -67,7 +67,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools"/>
+            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools;../RapidTools/Routines"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -97,7 +97,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools"/>
+            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools;../RapidTools/Routines"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -143,7 +143,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools"/>
+            <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools;../RapidTools/Routines"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -350,6 +350,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Rapid"/>
       </Unit>
+      <Unit>
+        <Filename Value="../RapidTools/Routines/routines.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -359,7 +363,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools"/>
+      <OtherUnitFiles Value="../RapidTools/eio;eio;../RapidTools/Frames;elog;../RapidTools/Elog;Rapid;../RapidTools/Modules;../RapidTools;../RapidTools/Routines"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
