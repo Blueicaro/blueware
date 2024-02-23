@@ -1,0 +1,19 @@
+{"version":1,"strings":[
+{"hash":346165,"name":"tentradassalidasfrm.griddatos.columns[0].title.caption","sourcebytes":[78,97,109,101],"value":"Name"},
+{"hash":100185148,"name":"tentradassalidasfrm.griddatos.columns[1].title.caption","sourcebytes":[84,121,112,101,32,111,102,32,83,105,103,110,97,108],"value":"Type of Signal"},
+{"hash":76556645,"name":"tentradassalidasfrm.griddatos.columns[2].title.caption","sourcebytes":[65,115,115,105,103,110,101,100,32,116,111,32,68,101,118,105,99,101],"value":"Assigned to Device"},
+{"hash":256441783,"name":"tentradassalidasfrm.griddatos.columns[3].title.caption","sourcebytes":[68,101,118,105,99,101,32,77,97,112,112,105,110,103],"value":"Device Mapping"},
+{"hash":183027228,"name":"tentradassalidasfrm.griddatos.columns[4].title.caption","sourcebytes":[83,105,103,110,97,108,32,73,100,101,110,116,105,102,105,99,97,116,105,111,110,32,76,97,98,101,108],"value":"Signal Identification Label"},
+{"hash":145482249,"name":"tentradassalidasfrm.griddatos.columns[5].title.caption","sourcebytes":[67,97,116,101,103,111,114,121],"value":"Category"},
+{"hash":21712924,"name":"tentradassalidasfrm.griddatos.columns[6].title.caption","sourcebytes":[65,99,99,101,115,115,32,76,101,118,101,108],"value":"Access Level"},
+{"hash":216076229,"name":"tentradassalidasfrm.griddatos.columns[7].title.caption","sourcebytes":[68,101,102,97,117,108,116,32,86,97,108,117,101],"value":"Default Value"},
+{"hash":130177397,"name":"tentradassalidasfrm.griddatos.columns[8].title.caption","sourcebytes":[70,105,108,116,101,114,32,116,105,109,101,32,112,97,115,105,118,101],"value":"Filter time pasive"},
+{"hash":114329973,"name":"tentradassalidasfrm.griddatos.columns[9].title.caption","sourcebytes":[70,105,108,116,101,114,32,116,105,109,101,32,97,99,116,105,118,101],"value":"Filter time active"},
+{"hash":180145653,"name":"tentradassalidasfrm.griddatos.columns[10].title.caption","sourcebytes":[73,110,118,101,114,116,32,112,104,121,115,105,99,97,108,32,118,97,108,117,101],"value":"Invert physical value"},
+{"hash":73320277,"name":"tentradassalidasfrm.griddatos.columns[11].title.caption","sourcebytes":[65,110,97,108,111,103,32,69,110,99,111,100,105,110,103,32,84,121,112,101],"value":"Analog Encoding Type"},
+{"hash":362773,"name":"tentradassalidasfrm.griddatos.columns[12].title.caption","sourcebytes":[77,97,120,105,109,117,110,32,76,111,103,105,99,97,108,32,86,97,108,117,101],"value":"Maximun Logical Value"},
+{"hash":113610389,"name":"tentradassalidasfrm.griddatos.columns[13].title.caption","sourcebytes":[77,105,110,117,109,117,110,32,76,111,103,105,99,97,108,32,86,97,108,117,101],"value":"Minumun Logical Value"},
+{"hash":45067189,"name":"tentradassalidasfrm.griddatos.columns[14].title.caption","sourcebytes":[77,97,120,105,109,117,110,32,98,105,116,32,86,97,108,117,101],"value":"Maximun bit Value"},
+{"hash":44576181,"name":"tentradassalidasfrm.griddatos.columns[15].title.caption","sourcebytes":[77,105,110,105,109,117,110,32,98,105,116,32,86,97,108,117,101],"value":"Minimun bit Value"},
+{"hash":249888780,"name":"tentradassalidasfrm.griddatos.columns[16].title.caption","sourcebytes":[83,97,102,101,116,121,32,76,101,118,101,108],"value":"Safety Level"}
+]}

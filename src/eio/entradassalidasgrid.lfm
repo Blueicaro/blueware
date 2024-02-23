@@ -2,10 +2,10 @@ object EntradasSalidasFrm: TEntradasSalidasFrm
   Left = 0
   Height = 500
   Top = 0
-  Width = 668
+  Width = 895
   Align = alClient
   ClientHeight = 500
-  ClientWidth = 668
+  ClientWidth = 895
   TabOrder = 0
   DesignLeft = 515
   DesignTop = 320
@@ -13,7 +13,7 @@ object EntradasSalidasFrm: TEntradasSalidasFrm
     Left = 0
     Height = 500
     Top = 0
-    Width = 668
+    Width = 895
     Align = alClient
     ColCount = 17
     ColumnClickSorts = True
@@ -48,6 +48,7 @@ object EntradasSalidasFrm: TEntradasSalidasFrm
         Title.Caption = 'Category'
       end    
       item
+        ButtonStyle = cbsPickList
         Title.Caption = 'Access Level'
       end    
       item

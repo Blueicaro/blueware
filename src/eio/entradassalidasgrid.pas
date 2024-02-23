@@ -13,8 +13,8 @@ type
 
   TEntradasSalidasFrm = class(TFrame)
     GridDatos: TStringGrid;
-    procedure GridDatosHeaderClick(Sender: TObject; IsColumn: Boolean;
-      Index: Integer);
+    procedure GridDatosHeaderClick(Sender: TObject; IsColumn: boolean;
+      Index: integer);
   private
     Fid: integer;
     FInfo: TSignalList;
@@ -24,6 +24,8 @@ type
     lsDevices: TStringList;
     //Lista de niveles de seguriad SafetyLevel
     lsSafetyLevel: TStringList;
+    //Lista de niveles de acceso
+    lsAccessLevel : TStringList;
     function ActualizarInfo: TSignalList;
   public
     property Info: TSignalList read ActualizarInfo;
@@ -40,7 +42,7 @@ implementation
 { TEntradasSalidasFrm }
 
 procedure TEntradasSalidasFrm.GridDatosHeaderClick(Sender: TObject;
-  IsColumn: Boolean; Index: Integer);
+  IsColumn: boolean; Index: integer);
 begin
 
 end;
@@ -53,7 +55,7 @@ var
 begin
   FInfo.Clear;
   Result := FInfo;
-  for I := 1 to GridDatos.RowCount-1 do
+  for I := 1 to GridDatos.RowCount - 1 do
   begin
     Elemento := FInfo.Add;
 
@@ -137,6 +139,7 @@ begin
   lsSafetyLevel.Clear;
   lsDevices.Clear;
   lsCategorias.Clear;
+  lsAccessLevel.Clear;
   for I := 0 to aDatos.Count - 1 do
   begin
     //Borrar Contenido del array de Datos antes de volcar datos nuevos
@@ -200,8 +203,7 @@ begin
     GridDatos.InsertRowWithValues(1, Datos);
 
     //LLenar categorias en el stringlist de las categorias
-
-    lsCategorias.Add(aDatos[I].Category);
+    lsCategorias.Add(Trim(aDatos[I].Category));
 
     //Llenar lista de Devices o Cartas de entradas y salidas
     lsDevices.Add(aDatos[I].Device);
@@ -209,11 +211,22 @@ begin
     //Llenar Lista de niveles de seguriad SafetyLevel
     lsSafetyLevel.Add(aDatos[I].SafeLevel);
 
+    //Llenar lista de niveles de acceso
+    lsAccessLevel.Add(aDatos[I].Access);
+
   end;
 
+  GridDatos.Columns.ColumnByTitle('Safety Level').PickList.Clear;
   GridDatos.Columns.ColumnByTitle('Safety Level').PickList.AddStrings(lsSafetyLevel);
+
+  GridDatos.Columns.ColumnByTitle('Assigned to Device').PickList.Clear;
   GridDatos.Columns.ColumnByTitle('Assigned to Device').PickList.AddStrings(lsDevices);
+
+  GridDatos.Columns.ColumnByTitle('category').PickList.Clear;
   GridDatos.Columns.ColumnByTitle('Category').PickList.AddStrings(lsCategorias);
+
+  GridDatos.Columns.ColumnByTitle('Access Level').PickList.Clear;
+  GridDatos.Columns.ColumnByTitle('Access Level').PickList.AddStrings(lsAccessLevel);
 end;
 
 constructor TEntradasSalidasFrm.Create(TheOwner: TComponent);
@@ -237,6 +250,10 @@ begin
   lsSafetyLevel.Sorted := True;
   lsSafetyLevel.Duplicates := dupIgnore;
 
+  lsAccessLevel := TStringList.Create;
+  lsAccessLevel.sorted := True;
+  lsAccessLevel.Duplicates:=dupIgnore;
+
   FInfo := TSignalList.Create;
 end;
 
@@ -247,6 +264,7 @@ begin
   FreeAndNil(lsCategorias);
   FreeAndNil(lsDevices);
   FreeAndNil(lsSafetyLevel);
+  FreeAndNil(lsAccessLevel);
   try
     GridDatos.SaveOptions := [soDesign];
     GridDatos.SaveToFile(Self.Name);

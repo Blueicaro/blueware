@@ -23,9 +23,9 @@
         </column1>
         <column2>
           <index value="2"/>
-          <width value="216"/>
+          <width value="120"/>
           <buttonstyle value="3"/>
-          <picklist value=",Bk100,Board15,PN_Internal_Anybus,,Bk100,Board15,PN_Internal_Anybus,,Bk100,Board15,PN_Internal_Anybus"/>
+          <picklist value=",Bk100,Board15,PN_Internal_Anybus"/>
           <title>
             <caption value="Assigned to Device"/>
           </title>
@@ -40,6 +40,7 @@
         </column3>
         <column4>
           <index value="4"/>
+          <width value="109"/>
           <buttonstyle value="0"/>
           <title>
             <caption value="Signal Identification Label"/>
@@ -48,14 +49,16 @@
         <column5>
           <index value="5"/>
           <buttonstyle value="3"/>
-          <picklist value=",GarraR1,,GarraR1,,GarraR1"/>
+          <picklist value=",GarraR1"/>
           <title>
             <caption value="Category"/>
           </title>
         </column5>
         <column6>
           <index value="6"/>
+          <width value="135"/>
           <buttonstyle value="0"/>
+          <picklist value=",All,ReadOnly,RobotStudio"/>
           <title>
             <caption value="Access Level"/>
           </title>
@@ -130,7 +133,7 @@
         <column16>
           <index value="16"/>
           <buttonstyle value="3"/>
-          <picklist value=",Store,,Store,,Store"/>
+          <picklist value=",Store"/>
           <title>
             <caption value="Safety Level"/>
           </title>

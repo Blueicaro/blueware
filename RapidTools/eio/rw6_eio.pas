@@ -174,8 +174,6 @@ type
     FNombreSeccion: string;
     function GetItems(Index: integer): TCrossConnectionItem;
     procedure SetItems(Index: integer; AValue: TCrossConnectionItem);
-
-
   public
     constructor Create;
     function Add: TCrossConnectionItem;
@@ -183,7 +181,7 @@ type
       default;
     procedure LoadFromStrings(StringList: TStringList);
     property NombreSeccion: string read FNombreSeccion;
-     function GetCrossByName(aCrossName: string): TCrossConnectionItem;
+    function GetCrossByName(aCrossName: string): TCrossConnectionItem;
   end;
 
 
@@ -389,6 +387,9 @@ type
 
 implementation
 
+{$IFDEF DEBUG}
+  uses LazLogger;
+{$ENDIF}
 { TEioRw6 }
 
 procedure TEioRw6.Add(aListaSenales: TSignalList);
@@ -462,6 +463,21 @@ begin
   try
     //Comprobar cabecera
     Archivo.LoadFromFile(FileName);
+    {$IFDEF DEBUG}
+      DebugLn({$I %CURRENTROUTINE%});
+      DebugLn('Fichero cargado: '+FileName);
+       if Archivo.Count < 10 then
+       begin
+         DebugLn(Archivo.text);
+       end
+       else
+       begin
+         For I := 0 To 9 Do
+         begin
+           DebugLn(Archivo[I]);
+         end;
+       end;
+    {$ENDIF}
     I := 0;
     CabeceraValida := False;
     while I < Archivo.Count do
@@ -1277,12 +1293,12 @@ end;
 
 function TCrossConnectionList.GetCrossByName(aCrossName: string): TCrossConnectionItem;
 var
-  I: Integer;
+  I: integer;
 begin
-  Result := TCrossConnectionItem.Create(Nil);
-  For I := 0 To Count-1 do
+  Result := TCrossConnectionItem.Create(nil);
+  for I := 0 to Count - 1 do
   begin
-    if CompareText(Items[I].Nombre,aCrossName) = 0 then
+    if CompareText(Items[I].Nombre, aCrossName) = 0 then
     begin
       Result := Items[I];
       Exit;

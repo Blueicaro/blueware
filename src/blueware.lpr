@@ -15,7 +15,7 @@ uses
   crossconnexiongrid, ImportEioExcel, gridSignals, importareiodlg,
   nombreimportareio, ElogTreeView, ElogUnit, eloggrid, ElogPropiedades,
   RapidTreeView, Modules, Rapid, FuncionesRapid, CadenasUtiles, editmodule,
-  TablaVerdadConexionCruzada, routines;
+  TablaVerdadConexionCruzada, routines, eio_validator;
 
 {$R *.res}
 

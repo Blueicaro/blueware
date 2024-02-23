@@ -1,18 +1,18 @@
 object mainfrm: Tmainfrm
   Left = -8
-  Height = 1073
+  Height = 1112
   Top = -8
-  Width = 1033
+  Width = 1049
   Caption = 'BlueWare'
-  ClientHeight = 1050
-  ClientWidth = 1033
+  ClientHeight = 1089
+  ClientWidth = 1049
   OnCreate = FormCreate
   WindowState = wsMaximized
   object SpkToolbar1: TSpkToolbar
     Left = 0
     Height = 112
     Top = 0
-    Width = 1033
+    Width = 1049
     Appearance.Tab.TabHeaderFont.Color = 9126421
     Appearance.Tab.BorderColor = 14922381
     Appearance.Tab.CornerRadius = 4
@@ -68,7 +68,7 @@ object mainfrm: Tmainfrm
     Appearance.Element.ActiveInnerDarkColor = 961020
     Appearance.Element.ActiveCaptionColor = 8405614
     Appearance.Element.Style = esRounded
-    TabIndex = 0
+    TabIndex = 1
     MenuButtonCaption = 'Menu'
     Tabs = (
       'SpkTab1'

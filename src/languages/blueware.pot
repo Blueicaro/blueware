@@ -1,6 +1,152 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: tentradassalidasfrm.griddatos.columns[0].title.caption
+msgid "Name"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[10].title.caption
+msgid "Invert physical value"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[11].title.caption
+msgid "Analog Encoding Type"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[12].title.caption
+msgid "Maximun Logical Value"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[13].title.caption
+msgid "Minumun Logical Value"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[14].title.caption
+msgid "Maximun bit Value"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[15].title.caption
+msgid "Minimun bit Value"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[16].title.caption
+msgid "Safety Level"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[1].title.caption
+msgid "Type of Signal"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[2].title.caption
+msgid "Assigned to Device"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[3].title.caption
+msgid "Device Mapping"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[4].title.caption
+msgid "Signal Identification Label"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[5].title.caption
+msgid "Category"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[6].title.caption
+msgid "Access Level"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[7].title.caption
+msgid "Default Value"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[8].title.caption
+msgid "Filter time pasive"
+msgstr ""
+
+#: tentradassalidasfrm.griddatos.columns[9].title.caption
+msgid "Filter time active"
+msgstr ""
+
+#: tmainfrm.acabrireio.caption
+msgid "Abrir"
+msgstr ""
+
+#: tmainfrm.acabrirelog.caption
+msgid "Local"
+msgstr ""
+
+#: tmainfrm.acasteriscos.caption
+msgid "Change to *"
+msgstr ""
+
+#: tmainfrm.acborrareio.caption
+msgid "Eliminar"
+msgstr ""
+
+#: tmainfrm.accrosstablaverdad.caption
+msgid "Tabla Verdad"
+msgstr ""
+
+#: tmainfrm.acdeleteelog.caption
+msgid "Delete"
+msgstr ""
+
+#: tmainfrm.acdesplazar.caption
+msgid "Desplazar"
+msgstr ""
+
+#: tmainfrm.acelogremoto.caption
+msgid "Remoto"
+msgstr ""
+
+#: tmainfrm.acexportar.caption
+msgid "Exportar"
+msgstr ""
+
+#: tmainfrm.acguardar.caption
+msgid "Guardar"
+msgstr ""
+
+#: tmainfrm.acguardartodos.caption
+msgid "Guardar todos"
+msgstr ""
+
+#: tmainfrm.acimportareio.caption
+msgctxt "tmainfrm.acimportareio.caption"
+msgid "Importar"
+msgstr ""
+
+#: tmainfrm.acimportareio1.caption
+msgctxt "tmainfrm.acimportareio1.caption"
+msgid "Importar"
+msgstr ""
+
+#: tmainfrm.acnuevoeio.caption
+msgid "Nuevo"
+msgstr ""
+
+#: tmainfrm.acopenbackup.caption
+msgid "Open Backup"
+msgstr ""
+
+#: tmainfrm.acopenmodule.caption
+msgid "Open Module"
+msgstr ""
+
+#: tmainfrm.acopenprogram.caption
+msgid "Open Program"
+msgstr ""
+
+#: tmainfrm.caption
+msgid "BlueWare"
+msgstr ""
+
+#: tmainfrm.elogshowproperties.caption
+msgid "Properties"
+msgstr ""
+
 #: trapidtreeviewfrm.tabbackups.caption
 msgid "Backups"
 msgstr ""

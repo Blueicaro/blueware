@@ -121,11 +121,6 @@
               <TrashVariables Value="True"/>
               <UseExternalDbgSyms Value="True"/>
             </Debugging>
-            <Options>
-              <Win32>
-                <GraphicApplication Value="True"/>
-              </Win32>
-            </Options>
           </Linking>
           <Other>
             <CustomOptions Value="-ddebug"/>
@@ -352,6 +347,10 @@
       </Unit>
       <Unit>
         <Filename Value="../RapidTools/Routines/routines.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../RapidTools/eio/eio_validator.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
     </Units>

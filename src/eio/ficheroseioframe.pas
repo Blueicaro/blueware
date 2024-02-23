@@ -35,6 +35,7 @@ type
   TEioFicherosFrm = class(TFrame)
     SaveDialog1: TSaveDialog;
     trvLista: TTreeView;
+    procedure FrameClick(Sender: TObject);
     procedure trvListaClick(Sender: TObject);
     procedure trvListaDeletion(Sender: TObject; Node: TTreeNode);
   private
@@ -49,9 +50,8 @@ type
     function ListaNombresSinRuta: TStringList;
     procedure BorrarEio; //Elimina el eio seleccionado del treeview
   public
-   procedure ActualizarMenus ;
+    procedure ActualizarMenus;
     procedure ExportarEio;
-
   public
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
@@ -64,7 +64,10 @@ uses LazFileUtils,
   entradassistemagrid,
   salidassistemagrid,
   crossconnexiongrid,
-  ActnList;
+  ActnList
+  {$IFDEF DEBUG}
+  ,LazLogger
+  {$ENDIF};
 
 var
   RootLocal: TTreeNode;
@@ -74,9 +77,9 @@ var
   GridSalidasSistema: Tsalidassistemaframe;
   CrossConexions: TCrossConexionFrame;
 
-{$R *.lfm}
+  {$R *.lfm}
 
-{ TEioFile }
+  { TEioFile }
 
 constructor TEioFile.Create;
 begin
@@ -194,7 +197,7 @@ begin
       end;
       if GridSenales.id <> Datos.id then
       begin
-        //Localizar Nodo Original y modidicar sus datos
+        //Localizar Nodo Original y modificar sus datos
         Raiz := trvLista.Items.FindNodeWithText('Local');
         if Raiz <> nil then
         begin
@@ -211,10 +214,11 @@ begin
             end;
             NodoActual := Raiz.GetNextChild(NodoActual);
           end;
-          GridSenales.LlenarGrid(Datos.Eio6.SignalList);
+          //  GridSenales.LlenarGrid(Datos.Eio6.SignalList);
           GridSenales.id := Datos.id;
         end;
       end;
+      GridSenales.LlenarGrid(Datos.Eio6.SignalList);
       GridSenales.BringToFront;
     end;
     'Entradas de sistema':
@@ -324,12 +328,16 @@ begin
 
 end;
 
+procedure TEioFicherosFrm.FrameClick(Sender: TObject);
+begin
+
+end;
+
 procedure TEioFicherosFrm.CargarArchivo(Archivo: TFileName);
 var
   Nombre: TFileName;
   Datos: TEioFile;
   Nodo: TTreeNode;
-
 begin
   if LimiteDeArchivo then
   begin
@@ -353,7 +361,7 @@ begin
 
     try
       Datos.Eio6.LoadFromFile(Archivo);
-    except
+     except
       on E: EEioError do
       begin
         FreeAndNil(Datos);
@@ -362,7 +370,7 @@ begin
       end;
     end;
     Nodo := trvLista.Items.AddChildObject(RootLocal, Nombre, Datos);
-    with  trvLista.Items do
+    with trvLista.Items do
     begin
       AddChild(Nodo, 'Conexiones Cruzadas');
       AddChild(Nodo, 'Entradas de sistema');
@@ -404,7 +412,7 @@ begin
   Datos.ruta := nombre;
 
   Nodo := trvLista.Items.AddChildObject(RootLocal, Nombre, Datos);
-  with  trvLista.Items do
+  with trvLista.Items do
   begin
     AddChild(Nodo, 'Conexiones Cruzadas');
     AddChild(Nodo, 'Entradas de sistema');
@@ -442,7 +450,7 @@ begin
 
 
   Nodo := trvLista.Items.AddChildObject(RootLocal, aEioNombre, Datos);
-  with  trvLista.Items do
+  with trvLista.Items do
   begin
     AddChild(Nodo, 'Conexiones Cruzadas');
     AddChild(Nodo, 'Entradas de sistema');
@@ -607,7 +615,6 @@ begin
 end;
 
 constructor TEioFicherosFrm.Create(TheOwner: TComponent);
-
 begin
   inherited Create(TheOwner);
   RootLocal := trvLista.Items.Add(nil, 'Local');
@@ -617,7 +624,7 @@ end;
 
 destructor TEioFicherosFrm.Destroy;
 begin
- inherited Destroy;
+  inherited Destroy;
 end;
 
 end.

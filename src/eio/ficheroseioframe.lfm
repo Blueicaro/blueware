@@ -3,9 +3,10 @@ object EioFicherosFrm: TEioFicherosFrm
   Height = 537
   Top = 0
   Width = 423
-  Align = alLeft
+  Align = alClient
   ClientHeight = 537
   ClientWidth = 423
+  OnClick = FrameClick
   TabOrder = 0
   DesignLeft = 747
   DesignTop = 142
@@ -15,7 +16,6 @@ object EioFicherosFrm: TEioFicherosFrm
     Top = 0
     Width = 254
     Align = alLeft
-    ShowSeparators = False
     TabOrder = 0
     OnClick = trvListaClick
     OnDeletion = trvListaDeletion

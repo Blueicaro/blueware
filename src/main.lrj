@@ -1,0 +1,21 @@
+{"version":1,"strings":[
+{"hash":62577685,"name":"tmainfrm.caption","sourcebytes":[66,108,117,101,87,97,114,101],"value":"BlueWare"},
+{"hash":5462396,"name":"tmainfrm.acabrirelog.caption","sourcebytes":[76,111,99,97,108],"value":"Local"},
+{"hash":93079215,"name":"tmainfrm.acelogremoto.caption","sourcebytes":[82,101,109,111,116,111],"value":"Remoto"},
+{"hash":4692226,"name":"tmainfrm.acabrireio.caption","sourcebytes":[65,98,114,105,114],"value":"Abrir"},
+{"hash":5618895,"name":"tmainfrm.acnuevoeio.caption","sourcebytes":[78,117,101,118,111],"value":"Nuevo"},
+{"hash":74882946,"name":"tmainfrm.acimportareio1.caption","sourcebytes":[73,109,112,111,114,116,97,114],"value":"Importar"},
+{"hash":114087587,"name":"tmainfrm.elogshowproperties.caption","sourcebytes":[80,114,111,112,101,114,116,105,101,115],"value":"Properties"},
+{"hash":78392485,"name":"tmainfrm.acdeleteelog.caption","sourcebytes":[68,101,108,101,116,101],"value":"Delete"},
+{"hash":259432002,"name":"tmainfrm.acexportar.caption","sourcebytes":[69,120,112,111,114,116,97,114],"value":"Exportar"},
+{"hash":246975170,"name":"tmainfrm.acguardar.caption","sourcebytes":[71,117,97,114,100,97,114],"value":"Guardar"},
+{"hash":180605347,"name":"tmainfrm.acguardartodos.caption","sourcebytes":[71,117,97,114,100,97,114,32,116,111,100,111,115],"value":"Guardar todos"},
+{"hash":175299138,"name":"tmainfrm.acdesplazar.caption","sourcebytes":[68,101,115,112,108,97,122,97,114],"value":"Desplazar"},
+{"hash":50593858,"name":"tmainfrm.acborrareio.caption","sourcebytes":[69,108,105,109,105,110,97,114],"value":"Eliminar"},
+{"hash":74882946,"name":"tmainfrm.acimportareio.caption","sourcebytes":[73,109,112,111,114,116,97,114],"value":"Importar"},
+{"hash":7018564,"name":"tmainfrm.accrosstablaverdad.caption","sourcebytes":[84,97,98,108,97,32,86,101,114,100,97,100],"value":"Tabla Verdad"},
+{"hash":49489965,"name":"tmainfrm.acopenprogram.caption","sourcebytes":[79,112,101,110,32,80,114,111,103,114,97,109],"value":"Open Program"},
+{"hash":91478053,"name":"tmainfrm.acopenmodule.caption","sourcebytes":[79,112,101,110,32,77,111,100,117,108,101],"value":"Open Module"},
+{"hash":80875200,"name":"tmainfrm.acopenbackup.caption","sourcebytes":[79,112,101,110,32,66,97,99,107,117,112],"value":"Open Backup"},
+{"hash":222189930,"name":"tmainfrm.acasteriscos.caption","sourcebytes":[67,104,97,110,103,101,32,116,111,32,42],"value":"Change to *"}
+]}

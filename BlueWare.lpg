@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectGroup FileVersion="2">
+    <Targets>
+      <Target FileName="src\blueware.lpi">
+        <BuildModes>
+          <Mode Name="Default"/>
+          <Mode Name="Debug_Linux"/>
+          <Mode Name="Release_Release"/>
+          <Mode Name="Debug_Windows"/>
+          <Mode Name="Release_Windows"/>
+        </BuildModes>
+      </Target>
+    </Targets>
+  </ProjectGroup>
+</CONFIG>
