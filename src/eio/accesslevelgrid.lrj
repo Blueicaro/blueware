@@ -1,0 +1,8 @@
+{"version":1,"strings":[
+{"hash":346165,"name":"taccesslevelframe.stringgrid1.columns[0].title.caption","sourcebytes":[78,97,109,101],"value":"Name"},
+{"hash":5801716,"name":"taccesslevelframe.stringgrid1.columns[1].title.caption","sourcebytes":[82,97,112,105,100],"value":"Rapid"},
+{"hash":21839237,"name":"taccesslevelframe.stringgrid1.columns[2].title.caption","sourcebytes":[76,111,99,97,108,32,67,108,105,101,110,116,32,105,110,32,77,97,110,117,97,108,32,77,111,100,101],"value":"Local Client in Manual Mode"},
+{"hash":142849557,"name":"taccesslevelframe.stringgrid1.columns[3].title.caption","sourcebytes":[76,111,99,97,108,32,67,108,105,101,110,116,32,105,110,32,65,117,116,111,32,77,111,100,101],"value":"Local Client in Auto Mode"},
+{"hash":244441269,"name":"taccesslevelframe.stringgrid1.columns[4].title.caption","sourcebytes":[82,101,109,111,116,101,32,67,108,105,101,110,116,32,105,110,32,77,97,110,117,97,108,32,77,111,100,101],"value":"Remote Client in Manual Mode"},
+{"hash":197028549,"name":"taccesslevelframe.stringgrid1.columns[5].title.caption","sourcebytes":[82,101,109,111,116,101,32,67,108,105,101,110,116,32,105,110,32,65,117,116,111,32,77,111,100,101],"value":"Remote Client in Auto Mode"}
+]}

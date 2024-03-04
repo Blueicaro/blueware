@@ -1,0 +1,41 @@
+object accesslevelframe: Taccesslevelframe
+  Left = 0
+  Height = 274
+  Top = 0
+  Width = 534
+  Align = alClient
+  ClientHeight = 274
+  ClientWidth = 534
+  TabOrder = 0
+  DesignLeft = 420
+  DesignTop = 27
+  object gridAccessLevel: TStringGrid
+    Left = 0
+    Height = 274
+    Top = 0
+    Width = 534
+    Align = alClient
+    ColCount = 6
+    Columns = <    
+      item
+        Title.Caption = 'Name'
+      end    
+      item
+        Title.Caption = 'Rapid'
+      end    
+      item
+        Title.Caption = 'Local Client in Manual Mode'
+      end    
+      item
+        Title.Caption = 'Local Client in Auto Mode'
+      end    
+      item
+        Title.Caption = 'Remote Client in Manual Mode'
+      end    
+      item
+        Title.Caption = 'Remote Client in Auto Mode'
+      end>
+    FixedCols = 0
+    TabOrder = 0
+  end
+end

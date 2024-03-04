@@ -1,7 +1,33 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: taccesslevelframe.stringgrid1.columns[0].title.caption
+msgctxt "taccesslevelframe.stringgrid1.columns[0].title.caption"
+msgid "Name"
+msgstr ""
+
+#: taccesslevelframe.stringgrid1.columns[1].title.caption
+msgid "Rapid"
+msgstr ""
+
+#: taccesslevelframe.stringgrid1.columns[2].title.caption
+msgid "Local Client in Manual Mode"
+msgstr ""
+
+#: taccesslevelframe.stringgrid1.columns[3].title.caption
+msgid "Local Client in Auto Mode"
+msgstr ""
+
+#: taccesslevelframe.stringgrid1.columns[4].title.caption
+msgid "Remote Client in Manual Mode"
+msgstr ""
+
+#: taccesslevelframe.stringgrid1.columns[5].title.caption
+msgid "Remote Client in Auto Mode"
+msgstr ""
+
 #: tentradassalidasfrm.griddatos.columns[0].title.caption
+msgctxt "tentradassalidasfrm.griddatos.columns[0].title.caption"
 msgid "Name"
 msgstr ""
 

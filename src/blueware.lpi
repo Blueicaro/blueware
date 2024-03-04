@@ -353,6 +353,28 @@
         <Filename Value="../RapidTools/eio/eio_validator.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="Rapid/ivalidador.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="erroresframe.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AvisosErroresFrm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit>
+      <Unit>
+        <Filename Value="eio/accesslevelgrid.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="accesslevelframe"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+      </Unit>
+      <Unit>
+        <Filename Value="gridclass.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

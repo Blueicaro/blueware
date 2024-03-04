@@ -255,7 +255,7 @@ type
     procedure SetItems(Index: integer; AValue: TSignalItem);
   public
     constructor Create;
-    function Add: TSignalItem;
+    function Add: TSignalItem;   //maximo senales 12000
     property Items[Index: integer]: TSignalItem read GetItems write SetItems; default;
     procedure LoadFromStrings(StringList: TStringList);
     function GetListaUnidades: TStringList;

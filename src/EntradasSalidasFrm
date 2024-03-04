@@ -91,6 +91,7 @@
           <index value="10"/>
           <width value="104"/>
           <buttonstyle value="0"/>
+          <picklist value="Yes,No"/>
           <title>
             <caption value="Invert physical value"/>
           </title>

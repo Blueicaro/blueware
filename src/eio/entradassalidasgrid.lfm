@@ -1,19 +1,19 @@
 object EntradasSalidasFrm: TEntradasSalidasFrm
   Left = 0
-  Height = 500
+  Height = 480
   Top = 0
-  Width = 895
+  Width = 873
   Align = alClient
-  ClientHeight = 500
-  ClientWidth = 895
+  ClientHeight = 480
+  ClientWidth = 873
   TabOrder = 0
   DesignLeft = 515
   DesignTop = 320
   object GridDatos: TStringGrid
     Left = 0
-    Height = 500
+    Height = 480
     Top = 0
-    Width = 895
+    Width = 873
     Align = alClient
     ColCount = 17
     ColumnClickSorts = True
@@ -61,6 +61,11 @@ object EntradasSalidasFrm: TEntradasSalidasFrm
         Title.Caption = 'Filter time active'
       end    
       item
+        ButtonStyle = cbsPickList
+        PickList.Strings = (
+          'No'
+          'Yes'
+        )
         Title.Caption = 'Invert physical value'
       end    
       item
@@ -83,10 +88,11 @@ object EntradasSalidasFrm: TEntradasSalidasFrm
         Title.Caption = 'Safety Level'
       end>
     FixedCols = 0
-    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goTabs, goRowSelect, goThumbTracking, goDblClickAutoSize, goSmoothScroll]
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goAutoAddRows, goTabs, goRowSelect, goThumbTracking, goDblClickAutoSize, goSmoothScroll]
     RangeSelectMode = rsmMulti
     RowCount = 1
     TabOrder = 0
     OnHeaderClick = GridDatosHeaderClick
+    OnValidateEntry = GridDatosValidateEntry
   end
 end

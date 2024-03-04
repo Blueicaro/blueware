@@ -11,6 +11,16 @@
           <Mode Name="Release_Windows"/>
         </BuildModes>
       </Target>
+      <Target FileName="TestGridClass\TestGridClass.lpi">
+        <BuildModes>
+          <Mode Name="Default"/>
+        </BuildModes>
+      </Target>
+      <Target FileName="TestGridClass\CrearGridClass.lpi">
+        <BuildModes>
+          <Mode Name="Default"/>
+        </BuildModes>
+      </Target>
     </Targets>
   </ProjectGroup>
 </CONFIG>

@@ -1,0 +1,1 @@
+{ "ListaPropiedades" : ["Col0,Propiedad0", "Col1,Propiedad1", "Col2,Propiedad2", "Col3,Propiedad3", "Col4,Propiedad4", "Col5,Propiedad5", "Col6,Propiedad6", "Col7,Propiedad7", "Col8,Propiedad8", "Col9,Propiedad9", "Col10,Propiedad10"] }

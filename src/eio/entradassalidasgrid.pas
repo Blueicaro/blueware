@@ -5,7 +5,8 @@ unit entradassalidasgrid;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Grids, rw6_eio;
+  Classes, SysUtils, Forms, Controls, Grids, StdCtrls, ComCtrls, ExtCtrls,
+  rw6_eio, erroresframe;
 
 type
 
@@ -15,6 +16,8 @@ type
     GridDatos: TStringGrid;
     procedure GridDatosHeaderClick(Sender: TObject; IsColumn: boolean;
       Index: integer);
+    procedure GridDatosValidateEntry(Sender: TObject; aCol, aRow: integer;
+      const OldValue: string; var NewValue: string);
   private
     Fid: integer;
     FInfo: TSignalList;
@@ -25,8 +28,9 @@ type
     //Lista de niveles de seguriad SafetyLevel
     lsSafetyLevel: TStringList;
     //Lista de niveles de acceso
-    lsAccessLevel : TStringList;
+    lsAccessLevel: TStringList;
     function ActualizarInfo: TSignalList;
+    procedure VentanaErrores;
   public
     property Info: TSignalList read ActualizarInfo;
     property id: integer read FId write Fid;
@@ -35,16 +39,43 @@ type
     destructor Destroy; override;
   end;
 
+var
+  FrameErrores: TAvisosErroresFrm;
+
 implementation
 
-{$R *.lfm}
+uses ivalidador;
 
-{ TEntradasSalidasFrm }
+  {$R *.lfm}
+
+
+  { TEntradasSalidasFrm }
 
 procedure TEntradasSalidasFrm.GridDatosHeaderClick(Sender: TObject;
   IsColumn: boolean; Index: integer);
 begin
 
+end;
+
+procedure TEntradasSalidasFrm.GridDatosValidateEntry(Sender: TObject;
+  aCol, aRow: integer; const OldValue: string; var NewValue: string);
+var
+  ColumnaActual: TGridColumn;
+  it: TListItem;
+  validador: TRapidIdentificadorV6;
+  I: integer;
+begin
+  ColumnaActual := GridDatos.Columns.Items[aCol];
+  if ColumnaActual.Title.Caption = 'Name' then
+  begin
+    try
+      validador := TRapidIdentificadorV6.Create(NewValue);
+       FrameErrores.BorrarErrores;
+       FrameErrores.AddErrores(validador.ListaErrores);
+    finally
+      FreeAndNil(validador);
+    end;
+  end;
 end;
 
 function TEntradasSalidasFrm.ActualizarInfo: TSignalList;
@@ -128,6 +159,17 @@ begin
     Elemento.SafeLevel := Contenido;
   end;
   Result := FInfo;
+end;
+
+procedure TEntradasSalidasFrm.VentanaErrores;
+begin
+  if FrameErrores = nil then
+  begin
+    FrameErrores := TAvisosErroresFrm.Create(Self);
+    FrameErrores.Parent := Self;
+    FrameErrores.Align:=alBottom;
+  end;
+  FrameErrores.BringToFront;
 end;
 
 procedure TEntradasSalidasFrm.LlenarGrid(aDatos: TSignalList);
@@ -227,12 +269,16 @@ begin
 
   GridDatos.Columns.ColumnByTitle('Access Level').PickList.Clear;
   GridDatos.Columns.ColumnByTitle('Access Level').PickList.AddStrings(lsAccessLevel);
+
+  GridDatos.Columns.ColumnByTitle('Invert physical value').PickList.Clear;
+  GridDatos.Columns.ColumnByTitle('Invert physical value').PickList.Add('Yes');
+  GridDatos.Columns.ColumnByTitle('Invert physical value').PickList.Add('No');
 end;
 
 constructor TEntradasSalidasFrm.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
-
+  VentanaErrores;
   if FileExists(Self.Name) then
   begin
     GridDatos.SaveOptions := [soDesign];
@@ -252,7 +298,7 @@ begin
 
   lsAccessLevel := TStringList.Create;
   lsAccessLevel.sorted := True;
-  lsAccessLevel.Duplicates:=dupIgnore;
+  lsAccessLevel.Duplicates := dupIgnore;
 
   FInfo := TSignalList.Create;
 end;

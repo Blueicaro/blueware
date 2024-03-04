@@ -1,18 +1,18 @@
 object mainfrm: Tmainfrm
   Left = -8
-  Height = 1112
+  Height = 1151
   Top = -8
-  Width = 1049
+  Width = 1065
   Caption = 'BlueWare'
-  ClientHeight = 1089
-  ClientWidth = 1049
+  ClientHeight = 1128
+  ClientWidth = 1065
   OnCreate = FormCreate
   WindowState = wsMaximized
   object SpkToolbar1: TSpkToolbar
     Left = 0
     Height = 112
     Top = 0
-    Width = 1049
+    Width = 1065
     Appearance.Tab.TabHeaderFont.Color = 9126421
     Appearance.Tab.BorderColor = 14922381
     Appearance.Tab.CornerRadius = 4
