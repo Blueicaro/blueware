@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <grid version="3">
+    <saveoptions create="True" position="False" content="False"/>
+    <design columncount="11" rowcount="29" fixedcols="0" fixedrows="1" defaultcolwidth="64" isdefaultcolwidth="0" defaultrowheight="22" isdefaultrowheight="0" color="clWindow">
+      <columns columnsenabled="True" columncount="11">
+        <column0>
+          <index value="0"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Status"/>
+          </title>
+        </column0>
+        <column1>
+          <index value="1"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Signal Name"/>
+          </title>
+        </column1>
+        <column2>
+          <index value="2"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Arg1"/>
+          </title>
+        </column2>
+        <column3>
+          <index value="3"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Arg2"/>
+          </title>
+        </column3>
+        <column4>
+          <index value="4"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Arg3"/>
+          </title>
+        </column4>
+        <column5>
+          <index value="5"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Arg4"/>
+          </title>
+        </column5>
+        <column6>
+          <index value="6"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Arg5"/>
+          </title>
+        </column6>
+        <column7>
+          <index value="7"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Arg6"/>
+          </title>
+        </column7>
+        <column8>
+          <index value="8"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Arg7"/>
+          </title>
+        </column8>
+        <column9>
+          <index value="9"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Arg8"/>
+          </title>
+        </column9>
+        <column10>
+          <index value="10"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value=""/>
+          </title>
+        </column10>
+      </columns>
+      <options>
+        <goFixedVertLine value="True"/>
+        <goFixedHorzLine value="True"/>
+        <goVertLine value="True"/>
+        <goHorzLine value="True"/>
+        <goRangeSelect value="True"/>
+        <goDrawFocusSelected value="False"/>
+        <goRowSizing value="False"/>
+        <goColSizing value="True"/>
+        <goRowMoving value="False"/>
+        <goColMoving value="True"/>
+        <goEditing value="False"/>
+        <goAutoAddRows value="False"/>
+        <goTabs value="False"/>
+        <goRowSelect value="False"/>
+        <goAlwaysShowEditor value="False"/>
+        <goThumbTracking value="True"/>
+        <goColSpanning value="False"/>
+        <goRelaxedRowSelect value="False"/>
+        <goDblClickAutoSize value="False"/>
+        <goSmoothScroll value="True"/>
+        <goAutoAddRowsSkipContentCheck value="False"/>
+        <goRowHighlight value="False"/>
+        <goScrollToLastCol value="False"/>
+        <goScrollToLastRow value="False"/>
+      </options>
+    </design>
+  </grid>
+</CONFIG>
