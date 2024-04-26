@@ -1,5 +1,8 @@
 unit ElogUnit;
-
+{
+ Esta unidad contiene la declaración de la clase TElog, la cual sirve para
+ leer y gestionar un archivo de errores de los robots ABB
+}
 {$mode ObjFPC}{$H+}
 
 interface
@@ -46,7 +49,6 @@ type
     function Add: TElogItem;
     property Items[Index: integer]: TElogItem read GetItems write SetItems; default;
     property Cabecera: string read FCabecera write FCabecera;
-
   end;
 
 type
@@ -58,7 +60,7 @@ type
     FClave: string;
     FNombre: string;
     FOpciones: TStringList;
-  public
+  published
     property Nombre: string read FNombre write FNombre;
     property Clave: string read FClave write FClave;
     property Opciones: TStringList read FOpciones write FOpciones;
@@ -99,24 +101,27 @@ type
     FOpcionesControlador: TStringList;
     FRobotWare: string;
   private
+    FArchivo: string;
     FFichero: TFileName;
     function GetListCategoria: TStringList;
-  public
-    property Elog: TElogList read FElog;
+  published
     property Date: TDateTime read FDate;
     property NombreSistema: string read FNombreSistema;
     property NombreControlador: string read FNombreControlador;
     property IdControlador: string read FIdControlador;
     property RobotWare: string read FRobotWare;
     property ClaveControlador: string read FClaveControlador;
-    property OpcionesControlador: TStringList read FOpcionesControlador;
-    property DriveModule: TDriveModuleList read FDriveModuleList;
-    property ListaCategorias: TStringList read GetListCategoria;
-    property Fichero: TFileName read FFichero;
   public
+    property Elog: TElogList read FElog;
+    function ElogCategoria(aCategoria: string): TElogList;
+    property Fichero: TFileName read FFichero;
+    property ListaCategorias: TStringList read GetListCategoria;
+    property DriveModule: TDriveModuleList read FDriveModuleList;
+    property OpcionesControlador: TStringList read FOpcionesControlador;
+    property Archivo: string read FArchivo;
     procedure ReadElogFile(aFileName: TFileName);
     procedure Assign(Source: TElog);
-  public
+    procedure Clear;
     constructor Create;
     destructor Destroy; override;
   end;
@@ -265,6 +270,23 @@ begin
   end;
 end;
 
+function TElog.ElogCategoria(aCategoria: string): TElogList;
+var
+  I: integer;
+  Elemento: TElogItem;
+begin
+  Result := TElogList.Create(TElogItem);
+  for I := 0 to Self.FElog.Count - 1 do
+  begin
+    if FElog[I].Categoria = aCategoria then
+    begin
+      Elemento := Result.Add;
+      Elemento.Assign(FElog[I]);
+    end;
+  end;
+
+end;
+
 procedure TElog.ReadElogFile(aFileName: TFileName);
 var
   lsFichero: TStringList;
@@ -276,6 +298,8 @@ var
   DatoActual: TElogItem;
 begin
   lsFichero := TStringList.Create;
+  Self.Clear;
+  FArchivo := aFileName;
   try
     lsFichero.LoadFromFile(aFileName);
 
@@ -451,6 +475,13 @@ begin
   FNombreSistema := Source.NombreSistema;
   FOpcionesControlador.Assign(Source.OpcionesControlador);
   FRobotWare := Source.RobotWare;
+end;
+
+procedure TElog.Clear;
+begin
+  FElog.Clear;
+  FOpcionesControlador.Clear;
+  FDriveModuleList.Clear;
 end;
 
 constructor TElog.Create;

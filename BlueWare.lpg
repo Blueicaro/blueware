@@ -14,9 +14,18 @@
       <Target FileName="TestGridClass\TestGridClass.lpi">
         <BuildModes>
           <Mode Name="Default"/>
+          <Mode Name="Debug"/>
+          <Mode Name="Release"/>
         </BuildModes>
       </Target>
       <Target FileName="TestGridClass\CrearGridClass.lpi">
+        <BuildModes>
+          <Mode Name="Default"/>
+          <Mode Name="Debug"/>
+          <Mode Name="Release"/>
+        </BuildModes>
+      </Target>
+      <Target FileName="ABB\Test\EioLog\eiolog.lpi">
         <BuildModes>
           <Mode Name="Default"/>
         </BuildModes>
