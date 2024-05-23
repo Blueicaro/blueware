@@ -1,17 +1,17 @@
-object Form1: TForm1
-  Left = 370
-  Height = 464
-  Top = 250
-  Width = 850
+object mainfrm: Tmainfrm
+  Left = -8
+  Height = 542
+  Top = -8
+  Width = 882
   Caption = 'Elog reader'
-  ClientHeight = 464
-  ClientWidth = 850
+  ClientHeight = 539
+  ClientWidth = 882
   Menu = MainMenu1
   OnCreate = FormCreate
   WindowState = wsMaximized
   object TreeViewCategorias: TTreeView
     Left = 0
-    Height = 464
+    Height = 539
     Top = 0
     Width = 176
     Align = alLeft
@@ -33,6 +33,10 @@ object Form1: TForm1
         Action = acSalir
       end
     end
+    object MenuItem1: TMenuItem
+      Caption = '?'
+      OnClick = MenuItem1Click
+    end
   end
   object ActionList1: TActionList
     Left = 80
@@ -49,5 +53,45 @@ object Form1: TForm1
   object OpenDialog1: TOpenDialog
     Left = 8
     Top = 8
+  end
+  object SplashAbout1: TSplashAbout
+    Font.Height = -13
+    LicenseFile = saGPL
+    Organisation = 'Unimate Robótica'
+    Author = 'Jorge Turiel Fernández'
+    TitleStyle = saForm
+    UserTitle = 'My Application'
+    ShowDescription = False
+    FormAboutHeight = 320
+    CreditLines.Strings = (
+      'License: GPL/LGPL. See Licence for more info'
+      ''
+      'Elog View  is a small program to analize the elog files'
+      ' from ABB robots'
+      ''
+      'This program is supplied as it. Use at own risk'
+      ''
+      '(c) Jorge Turiel Fernández'
+    )
+    ShowCreditButton = False
+    CreditsTextfileName = 'credits.txt'
+    PoweredBy.About.Description.Strings = (
+      'Component that shows a Powered By graphic.'#13#10'Use method ShowPoweredByForm in your form.create()'#13#10'to use the component'
+    )
+    PoweredBy.About.Title = 'About PoweredBy component'
+    PoweredBy.About.Height = 280
+    PoweredBy.About.Width = 400
+    PoweredBy.About.Font.Color = clNavy
+    PoweredBy.About.Font.Height = -13
+    PoweredBy.About.Font.Name = 'Arial'
+    PoweredBy.About.BackGroundColor = clWindow
+    PoweredBy.About.Version = '1.2.0.0'
+    PoweredBy.About.Authorname = 'Gordon Bamber'
+    PoweredBy.About.Organisation = 'Public Domain'
+    PoweredBy.About.AuthorEmail = 'minesadorada@charcodelvalle.com'
+    PoweredBy.About.ComponentName = 'PoweredBy component'
+    PoweredBy.About.LicenseType = abModifiedGPL
+    Left = 387
+    Top = 152
   end
 end

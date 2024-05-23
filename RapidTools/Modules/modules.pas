@@ -1,6 +1,6 @@
 unit Modules;
 {
- Rapid Modules
+ Rapid Modules. Esta unidad se encarga de gestionar los módulos
 }
 {$mode ObjFPC}{$H+}
 
@@ -42,7 +42,7 @@ uses FuncionesRapid;
 
 procedure TModule.Procesar;
 var
-  ListaPuntos: TStringList;
+  ListaPuntos, Lista: TStringList;
   Punto: TRobTargetData;
   I: Integer;
   Cadena: String;
@@ -59,11 +59,14 @@ begin
   finally
     FreeAndNil(ListaPuntos);
   end;
-  FListRoutines := ListaRutinas(FFichero);
+  Lista := ListaRutinas(FFichero);
+  FListRoutines.text := Lista.text;
+  FreeAndNil(Lista);
 end;
 
 procedure TModule.CargarModulo(FileName: TFileName);
 begin
+  { #todo -oJorge -cOptimizar : Realizar la carga usando TStream }
   FFichero.LoadFromFile(FileName);
   FNombre := FileName;
   Procesar;
@@ -82,7 +85,7 @@ destructor TModule.Destroy;
 begin
   FreeAndNil(FFichero);
   FreeAndNil(FRobTargetDataList);
-  FreeAndNil(FFichero);
+  FreeAndNil(FListRoutines);
   inherited Destroy;
 end;
 

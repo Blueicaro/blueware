@@ -1070,8 +1070,7 @@ begin
   Limites := ['('];
   for I := 0 to aFName.Count - 1 do
   begin
-
-    for J := 0 to 3 - 1 do
+  for J := 0 to 3 - 1 do
     begin
       Cadena := Trim(AFName[i]);
       Posicion := Pos(DeclaraRutina[j], Cadena);
@@ -1085,10 +1084,8 @@ begin
         //Sacamos el nombre
         Cadena := PalabraEntera(Cadena, 1, Limites);
         if Cadena <> '' then
-
-          Result.Add(Cadena);
-
-        Break;
+            Result.Add(Cadena);
+          Break;
       end;
     end;// Fnal del for J
 

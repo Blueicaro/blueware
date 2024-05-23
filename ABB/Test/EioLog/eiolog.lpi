@@ -14,6 +14,11 @@
       </XPManifest>
       <Icon Value="0"/>
     </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <StringTable CompanyName="Unimate Robótica" LegalCopyright="Jorge Turiel Fernández" ProductName="Elog Viewer"/>
+    </VersionInfo>
     <BuildModes>
       <Item Name="Default" Default="True"/>
       <Item Name="Debug">
@@ -62,7 +67,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="eiolog"/>
+            <Filename Value="$(TargetCPU)-$(TargetOS)\eiolog"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -99,6 +104,12 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="splashabout"/>
+      </Item>
+      <Item>
+        <PackageName Value="NiceSidebarLaz"/>
+      </Item>
+      <Item>
         <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
@@ -110,7 +121,8 @@
       <Unit>
         <Filename Value="main.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
+        <ComponentName Value="mainfrm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>

@@ -5,7 +5,8 @@ unit elogframe;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Grids, ExtCtrls, StdCtrls, ElogUnit, Types;
+  Classes, SysUtils, Forms, Controls, Grids, ExtCtrls, StdCtrls,
+  ElogUnit, Types;
 
 type
 
@@ -14,6 +15,8 @@ type
   TElogFrm = class(TFrame)
     ElogGrid: TStringGrid;
     ListaIconos: TImageList;
+    MemoInfo: TMemo;
+    Splitter1: TSplitter;
     procedure ElogGridDrawCell(Sender: TObject; aCol, aRow: integer;
       aRect: TRect; aState: TGridDrawState);
     procedure ElogGridHeaderClick(Sender: TObject; IsColumn: boolean;
@@ -21,6 +24,7 @@ type
   private
     FElog: TElog;
     procedure MostrarDatos(aElog: TElogList);
+    procedure MostrarInformacion;
   public
     procedure FiltroCategoria(aCategoria: string);
     procedure ResetFiltro;
@@ -105,6 +109,38 @@ begin
   ElogGrid.EndUpdate(True);
 end;
 
+procedure TElogFrm.MostrarInformacion;
+var
+  I, X: Integer;
+  Cadena: String;
+begin
+  MemoInfo.BeginUpdateBounds;
+  MemoInfo.Clear;
+  MemoInfo.Lines.Add('Fecha :' + DateToStr(FElog.Date));
+  MemoInfo.Lines.Add('Nombre del sistema: ' + FElog.NombreSistema);
+  MemoInfo.Lines.Add('Nombre del controlador: ' + FElog.NombreControlador);
+  MemoInfo.Lines.Add('Id controlador: '+FElog.IdControlador);
+  MemoInfo.Lines.Add('Clave del controlador: '+FElog.ClaveControlador);
+  MemoInfo.Lines.Add('Opciones del controlador');
+  For I:= 0 To Elog.OpcionesControlador.Count-1 do
+  begin
+    MemoInfo.Lines.Add(#09+Elog.OpcionesControlador[I]);
+  end;
+  For X := 0 To FElog.DriveModule.Count-1 do
+  begin
+    MemoInfo.Lines.Add('DriveModule '+IntToStr(X+1));
+    For I := 0 To FElog.DriveModule[x].Opciones.Count-1 do
+    begin
+      Cadena := FElog.DriveModule[x].Opciones[I];
+      if Cadena <> '' then
+      begin
+        MemoInfo.Lines.Add(#09+FElog.DriveModule[x].Opciones[I]);
+      end;
+    end;
+  end;
+  MemoInfo.EndUpdateBounds;
+end;
+
 procedure TElogFrm.FiltroCategoria(aCategoria: string);
 var
   Lista: TElogList;
@@ -144,6 +180,8 @@ procedure TElogFrm.LeerElog(aFileName: TFileName);
 begin
   FElog.ReadElogFile(aFileName);
   MostrarDatos(FElog.Elog);
+  MostrarInformacion;
+
 end;
 
 end.

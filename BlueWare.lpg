@@ -28,6 +28,13 @@
       <Target FileName="ABB\Test\EioLog\eiolog.lpi">
         <BuildModes>
           <Mode Name="Default"/>
+          <Mode Name="Debug"/>
+          <Mode Name="Release"/>
+        </BuildModes>
+      </Target>
+      <Target FileName="ABB\Test\Robtargets\robtargets.lpi">
+        <BuildModes>
+          <Mode Name="Default"/>
         </BuildModes>
       </Target>
     </Targets>

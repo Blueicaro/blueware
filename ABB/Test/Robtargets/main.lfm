@@ -1,0 +1,50 @@
+object mainfrm: Tmainfrm
+  Left = 502
+  Height = 365
+  Top = 250
+  Width = 443
+  Caption = 'Conversion puntos'
+  ClientHeight = 365
+  ClientWidth = 443
+  Menu = MainMenu1
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 342
+    Width = 443
+    Panels = <>
+  end
+  object MainMenu1: TMainMenu
+    Left = 80
+    Top = 112
+    object MenuItem1: TMenuItem
+      Caption = 'Archivo'
+      object MenuItem2: TMenuItem
+        Action = acAbrir
+      end
+      object Separator1: TMenuItem
+        Caption = '-'
+      end
+      object menuSalir: TMenuItem
+        Caption = 'Salir'
+        ShortCut = 32883
+        OnClick = menuSalirClick
+      end
+    end
+  end
+  object ActionList1: TActionList
+    Left = 16
+    Top = 16
+    object acAbrir: TAction
+      Category = 'Archivo'
+      Caption = 'Abrir módulo'
+      OnExecute = acAbrirExecute
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 144
+    Top = 48
+  end
+end

@@ -2,11 +2,11 @@
 <CONFIG>
   <grid version="3">
     <saveoptions create="True" position="True" content="False"/>
-    <design columncount="7" rowcount="86" fixedcols="0" fixedrows="1" defaultcolwidth="64" isdefaultcolwidth="0" defaultrowheight="22" isdefaultrowheight="0" color="clWindow">
+    <design columncount="7" rowcount="1" fixedcols="0" fixedrows="1" defaultcolwidth="64" isdefaultcolwidth="0" defaultrowheight="22" isdefaultrowheight="0" color="clWindow">
       <columns columnsenabled="True" columncount="7">
         <column0>
           <index value="0"/>
-          <width value="65"/>
+          <width value="85"/>
           <buttonstyle value="0"/>
           <title>
             <caption value="Seq"/>
@@ -14,7 +14,7 @@
         </column0>
         <column1>
           <index value="1"/>
-          <width value="30"/>
+          <width value="84"/>
           <buttonstyle value="0"/>
           <title>
             <caption value="Tipo"/>
@@ -22,7 +22,7 @@
         </column1>
         <column2>
           <index value="2"/>
-          <width value="72"/>
+          <width value="84"/>
           <buttonstyle value="0"/>
           <title>
             <caption value="Categoría"/>
@@ -30,7 +30,7 @@
         </column2>
         <column3>
           <index value="3"/>
-          <width value="46"/>
+          <width value="84"/>
           <buttonstyle value="0"/>
           <title>
             <caption value="Código"/>
@@ -38,7 +38,7 @@
         </column3>
         <column4>
           <index value="4"/>
-          <width value="215"/>
+          <width value="84"/>
           <buttonstyle value="0"/>
           <title>
             <caption value="Título"/>
@@ -46,7 +46,7 @@
         </column4>
         <column5>
           <index value="5"/>
-          <width value="110"/>
+          <width value="84"/>
           <buttonstyle value="0"/>
           <title>
             <caption value="Fecha"/>
@@ -54,7 +54,7 @@
         </column5>
         <column6>
           <index value="6"/>
-          <width value="1507"/>
+          <width value="84"/>
           <buttonstyle value="0"/>
           <title>
             <caption value="Descripción"/>
@@ -88,8 +88,8 @@
         <goScrollToLastRow value="False"/>
       </options>
     </design>
-    <position topleftcol="0" topleftrow="42" col="0" row="59">
-      <selection left="0" top="59" right="0" bottom="59"/>
+    <position topleftcol="0" topleftrow="1" col="0" row="0">
+      <selection left="0" top="0" right="0" bottom="0"/>
     </position>
   </grid>
 </CONFIG>

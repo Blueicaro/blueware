@@ -6,26 +6,29 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ActnList,
-  ComCtrls, elogframe;
+  ComCtrls, usplashabout, elogframe;
 
 type
 
-  { TForm1 }
+  { Tmainfrm }
 
-  TForm1 = class(TForm)
+  Tmainfrm = class(TForm)
     acAbrir: TAction;
     acSalir: TAction;
     ActionList1: TActionList;
     MainMenu1: TMainMenu;
     Archivo: TMenuItem;
+    MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     OpenDialog1: TOpenDialog;
     Separator1: TMenuItem;
+    SplashAbout1: TSplashAbout;
     TreeViewCategorias: TTreeView;
     procedure acAbrirExecute(Sender: TObject);
     procedure acSalirExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
     procedure TreeViewCategoriasClick(Sender: TObject);
   private
     procedure CrearArbol(Nombre: string);
@@ -34,21 +37,21 @@ type
   end;
 
 var
-  Form1: TForm1;
+  mainfrm: Tmainfrm;
   Elog: TElogFrm;
 
 implementation
 
 {$R *.lfm}
 
-{ TForm1 }
+{ Tmainfrm }
 
-procedure TForm1.acSalirExecute(Sender: TObject);
+procedure Tmainfrm.acSalirExecute(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure Tmainfrm.FormCreate(Sender: TObject);
 begin
   Elog := TElogFrm.Create(Self);
   Elog.Parent := Self;
@@ -57,7 +60,12 @@ begin
   Elog.BringToFront;
 end;
 
-procedure TForm1.TreeViewCategoriasClick(Sender: TObject);
+procedure Tmainfrm.MenuItem1Click(Sender: TObject);
+begin
+  SplashAbout1.ShowAbout;
+end;
+
+procedure Tmainfrm.TreeViewCategoriasClick(Sender: TObject);
 begin
   if TreeViewCategorias.Selected = nil then
   begin
@@ -74,7 +82,7 @@ begin
 
 end;
 
-procedure TForm1.CrearArbol(Nombre: string);
+procedure Tmainfrm.CrearArbol(Nombre: string);
 var
   Raiz: TTreeNode;
   lsCategoria: TStringList;
@@ -91,7 +99,7 @@ begin
   TreeViewCategorias.FullExpand;
 end;
 
-procedure TForm1.acAbrirExecute(Sender: TObject);
+procedure Tmainfrm.acAbrirExecute(Sender: TObject);
 begin
   if OpenDialog1.Execute then
   begin
