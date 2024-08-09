@@ -49,6 +49,7 @@ type
     function GetId(aEioNombre: string): integer;
     function ListaNombresSinRuta: TStringList;
     procedure BorrarEio; //Elimina el eio seleccionado del treeview
+    procedure GuardarComo (Fichero:TFileName);
   public
     procedure ActualizarMenus;
     procedure ExportarEio;
@@ -373,6 +374,7 @@ begin
     with trvLista.Items do
     begin
       AddChild(Nodo, 'Conexiones Cruzadas');
+
       AddChild(Nodo, 'Entradas de sistema');
       AddChild(Nodo, 'Salidas de Sistema');
       AddChild(Nodo, 'Redes');
@@ -566,6 +568,15 @@ begin
       nodo.Delete;
     end;
   end;
+end;
+
+procedure TEioFicherosFrm.GuardarComo(Fichero: TFileName);
+var
+  nodo: TTreeNode;
+begin
+  if trvLista.Selected = nil then exit;
+    nodo := trvLista.Selected;
+    { #todo -cEio : Guardar Eio. En Contrucción }
 end;
 
 procedure TEioFicherosFrm.ExportarEio;

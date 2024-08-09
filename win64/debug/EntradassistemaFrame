@@ -2,7 +2,7 @@
 <CONFIG>
   <grid version="3">
     <saveoptions create="True" position="False" content="False"/>
-    <design columncount="11" rowcount="9" fixedcols="0" fixedrows="1" defaultcolwidth="64" isdefaultcolwidth="0" defaultrowheight="22" isdefaultrowheight="0" color="clWindow">
+    <design columncount="11" rowcount="9" fixedcols="0" fixedrows="1" defaultcolwidth="80" isdefaultcolwidth="0" defaultrowheight="27" isdefaultrowheight="0" color="clWindow">
       <columns columnsenabled="True" columncount="11">
         <column0>
           <index value="0"/>

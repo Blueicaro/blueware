@@ -1,18 +1,19 @@
 object mainfrm: Tmainfrm
-  Left = -8
-  Height = 1151
-  Top = -8
-  Width = 1065
+  Left = -9
+  Height = 1102
+  Top = -9
+  Width = 1367
   Caption = 'BlueWare'
-  ClientHeight = 1128
-  ClientWidth = 1065
+  ClientHeight = 1055
+  ClientWidth = 1367
+  DesignTimePPI = 120
   OnCreate = FormCreate
   WindowState = wsMaximized
   object SpkToolbar1: TSpkToolbar
     Left = 0
-    Height = 112
+    Height = 139
     Top = 0
-    Width = 1065
+    Width = 1367
     Appearance.Tab.TabHeaderFont.Color = 9126421
     Appearance.Tab.BorderColor = 14922381
     Appearance.Tab.CornerRadius = 4
@@ -68,7 +69,7 @@ object mainfrm: Tmainfrm
     Appearance.Element.ActiveInnerDarkColor = 961020
     Appearance.Element.ActiveCaptionColor = 8405614
     Appearance.Element.Style = esRounded
-    TabIndex = 1
+    TabIndex = 0
     MenuButtonCaption = 'Menu'
     Tabs = (
       'SpkTab1'
@@ -382,8 +383,8 @@ object mainfrm: Tmainfrm
     end
   end
   object ActionList1: TActionList
-    Left = 220
-    Top = 180
+    Left = 275
+    Top = 225
     object acAbrirElog: TAction
       Category = 'Elog'
       Caption = 'Local'
@@ -421,12 +422,12 @@ object mainfrm: Tmainfrm
     end
   end
   object OpenDialog1: TOpenDialog
-    Left = 331
-    Top = 177
+    Left = 414
+    Top = 221
   end
   object AccionesEio: TActionList
-    Left = 143
-    Top = 200
+    Left = 179
+    Top = 250
     object acExportar: TAction
       Caption = 'Exportar'
       OnExecute = acExportarExecute
@@ -459,8 +460,8 @@ object mainfrm: Tmainfrm
     end
   end
   object AccionesRapid: TActionList
-    Left = 160
-    Top = 288
+    Left = 200
+    Top = 360
     object acOpenProgram: TAction
       Category = 'Program'
       Caption = 'Open Program'

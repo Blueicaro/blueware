@@ -1,11 +1,13 @@
 object AvisosErroresFrm: TAvisosErroresFrm
   Left = 0
-  Height = 240
+  Height = 300
   Top = 0
-  Width = 320
+  Width = 400
   Align = alTop
-  ClientHeight = 240
-  ClientWidth = 320
+  ClientHeight = 300
+  ClientWidth = 400
+  DesignTimePPI = 120
+  ParentFont = False
   TabOrder = 0
   DesignLeft = 420
   DesignTop = 27

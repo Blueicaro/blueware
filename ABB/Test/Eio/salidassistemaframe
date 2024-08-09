@@ -1,65 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <grid version="3">
-    <saveoptions create="True" position="True" content="False"/>
-    <design columncount="7" rowcount="1" fixedcols="0" fixedrows="1" defaultcolwidth="80" isdefaultcolwidth="0" defaultrowheight="27" isdefaultrowheight="0" color="clWindow">
-      <columns columnsenabled="True" columncount="7">
+    <saveoptions create="True" position="False" content="False"/>
+    <design columncount="11" rowcount="29" fixedcols="0" fixedrows="1" defaultcolwidth="80" isdefaultcolwidth="0" defaultrowheight="27" isdefaultrowheight="0" color="clWindow">
+      <columns columnsenabled="True" columncount="11">
         <column0>
           <index value="0"/>
-          <width value="106"/>
+          <width value="82"/>
           <buttonstyle value="0"/>
           <title>
-            <caption value="Seq"/>
+            <caption value="Status"/>
           </title>
         </column0>
         <column1>
           <index value="1"/>
-          <width value="105"/>
           <buttonstyle value="0"/>
           <title>
-            <caption value="Tipo"/>
+            <caption value="Signal Name"/>
           </title>
         </column1>
         <column2>
           <index value="2"/>
-          <width value="105"/>
           <buttonstyle value="0"/>
           <title>
-            <caption value="Categoría"/>
+            <caption value="Arg1"/>
           </title>
         </column2>
         <column3>
           <index value="3"/>
-          <width value="105"/>
           <buttonstyle value="0"/>
           <title>
-            <caption value="Código"/>
+            <caption value="Arg2"/>
           </title>
         </column3>
         <column4>
           <index value="4"/>
-          <width value="105"/>
           <buttonstyle value="0"/>
           <title>
-            <caption value="Título"/>
+            <caption value="Arg3"/>
           </title>
         </column4>
         <column5>
           <index value="5"/>
-          <width value="105"/>
           <buttonstyle value="0"/>
           <title>
-            <caption value="Fecha"/>
+            <caption value="Arg4"/>
           </title>
         </column5>
         <column6>
           <index value="6"/>
-          <width value="105"/>
           <buttonstyle value="0"/>
           <title>
-            <caption value="Descripción"/>
+            <caption value="Arg5"/>
           </title>
         </column6>
+        <column7>
+          <index value="7"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Arg6"/>
+          </title>
+        </column7>
+        <column8>
+          <index value="8"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Arg7"/>
+          </title>
+        </column8>
+        <column9>
+          <index value="9"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value="Arg8"/>
+          </title>
+        </column9>
+        <column10>
+          <index value="10"/>
+          <buttonstyle value="0"/>
+          <title>
+            <caption value=""/>
+          </title>
+        </column10>
       </columns>
       <options>
         <goFixedVertLine value="True"/>
@@ -71,16 +93,16 @@
         <goRowSizing value="False"/>
         <goColSizing value="True"/>
         <goRowMoving value="False"/>
-        <goColMoving value="False"/>
+        <goColMoving value="True"/>
         <goEditing value="False"/>
         <goAutoAddRows value="False"/>
         <goTabs value="False"/>
         <goRowSelect value="False"/>
         <goAlwaysShowEditor value="False"/>
-        <goThumbTracking value="False"/>
+        <goThumbTracking value="True"/>
         <goColSpanning value="False"/>
         <goRelaxedRowSelect value="False"/>
-        <goDblClickAutoSize value="True"/>
+        <goDblClickAutoSize value="False"/>
         <goSmoothScroll value="True"/>
         <goAutoAddRowsSkipContentCheck value="False"/>
         <goRowHighlight value="False"/>
@@ -88,8 +110,5 @@
         <goScrollToLastRow value="False"/>
       </options>
     </design>
-    <position topleftcol="0" topleftrow="1" col="0" row="0">
-      <selection left="0" top="0" right="0" bottom="0"/>
-    </position>
   </grid>
 </CONFIG>

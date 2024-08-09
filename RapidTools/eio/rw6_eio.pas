@@ -502,6 +502,11 @@ begin
     FNetWorks.LoadFromStrings(Archivo);
     FAccessLevelList.LoadFromString(Archivo);
 
+    {$IFDEF DEBUG}
+       DebugLn('Número de entradas de sistema: '+IntToStr(FEntradasSistema.Count));
+       DebugLn('Número de Salidas de sistema: '+IntToStr(FSalidasSistema.Count));
+       DebugLn('Número de Senales: '+IntToStr(FSenales.Count));
+    {$ENDIF}
   finally
     FreeAndNil(Archivo);
   end;
