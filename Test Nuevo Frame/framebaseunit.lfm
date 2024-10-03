@@ -1,29 +1,31 @@
 object FrameBase: TFrameBase
   Left = 0
-  Height = 553
+  Height = 691
   Top = 0
-  Width = 916
-  ClientHeight = 553
-  ClientWidth = 916
+  Width = 1145
+  ClientHeight = 691
+  ClientWidth = 1145
+  DesignTimePPI = 120
   OnMouseDown = FrameMouseDown
   OnMouseLeave = FrameMouseLeave
   OnMouseMove = FrameMouseMove
   OnMouseUp = FrameMouseUp
+  ParentFont = False
   TabOrder = 0
   DesignLeft = 452
   DesignTop = 31
   object pnTitle: TPanel
-    Left = 5
-    Height = 35
-    Top = 5
-    Width = 906
+    Left = 6
+    Height = 44
+    Top = 6
+    Width = 1133
     Align = alTop
-    BorderSpacing.Left = 5
-    BorderSpacing.Top = 5
-    BorderSpacing.Right = 5
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 6
+    BorderSpacing.Right = 6
     BevelOuter = bvLowered
-    ClientHeight = 35
-    ClientWidth = 906
+    ClientHeight = 44
+    ClientWidth = 1133
     Color = clMenuHighlight
     ParentBackground = False
     ParentColor = False
@@ -32,29 +34,30 @@ object FrameBase: TFrameBase
     OnMouseMove = pnTitleMouseMove
     OnMouseUp = pnTitleMouseUp
     object spbMinimize: TSpeedButton
-      Left = 808
-      Height = 22
-      Top = 8
-      Width = 23
+      Left = 1010
+      Height = 28
+      Top = 10
+      Width = 29
       Anchors = [akTop, akRight]
       Images = IconsImages
       ImageIndex = 0
+      OnClick = spbMinimizeClick
     end
     object spbClose: TSpeedButton
-      Left = 874
-      Height = 22
-      Top = 8
-      Width = 23
+      Left = 1093
+      Height = 28
+      Top = 10
+      Width = 29
       Anchors = [akTop, akRight]
       Images = IconsImages
       ImageIndex = 1
       OnClick = spbCloseClick
     end
     object spbRestore: TSpeedButton
-      Left = 840
-      Height = 22
-      Top = 8
-      Width = 23
+      Left = 1050
+      Height = 28
+      Top = 10
+      Width = 29
       Anchors = [akTop, akRight]
       Images = IconsImages
       ImageIndex = 2
@@ -62,14 +65,14 @@ object FrameBase: TFrameBase
     end
   end
   object pnWorkingArea: TPanel
-    Left = 5
-    Height = 508
-    Top = 40
-    Width = 906
+    Left = 6
+    Height = 635
+    Top = 50
+    Width = 1133
     Align = alClient
-    BorderSpacing.Left = 5
-    BorderSpacing.Right = 5
-    BorderSpacing.Bottom = 5
+    BorderSpacing.Left = 6
+    BorderSpacing.Right = 6
+    BorderSpacing.Bottom = 6
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
@@ -77,8 +80,8 @@ object FrameBase: TFrameBase
     TabOrder = 1
   end
   object IconsImages: TImageList
-    Left = 329
-    Top = 325
+    Left = 411
+    Top = 406
     Bitmap = {
       4C7A040000001000000010000000640400000000000078DAED975D4C536718C7
       EB1C59E66CA1B00285C2DC9009D54DA74B66B625131237AFBCF3621FC9225AF4

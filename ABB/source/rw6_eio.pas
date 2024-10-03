@@ -12,7 +12,7 @@ type
   end;
 
 
-// Salida de Sistema
+  // Salida de Sistema
 type
 
   { TSysOutputItem }
@@ -27,7 +27,7 @@ type
     property Signal: string read FSignal write FSignal;
   end;
 
-//Lista de salidas de sistema
+  //Lista de salidas de sistema
 type
 
   { TSysOutPutList }
@@ -43,7 +43,7 @@ type
     procedure LoadFromStrings(StringList: TStringList);
   end;
 
-//Entradas de sistema
+  //Entradas de sistema
 type
 
   { TSysInputItem }
@@ -74,7 +74,7 @@ type
     property Arg8: string read FArg8 write FArg8;
   end;
 
-//Lista de Entradas de sistema
+  //Lista de Entradas de sistema
 type
 
 
@@ -91,7 +91,7 @@ type
     procedure LoadFromStrings(StringList: TStringList);
   end;
 
-//Conexiones cruzadas
+  //Conexiones cruzadas
 type
 
   { TCrossConnectionItem }
@@ -154,7 +154,7 @@ type
   end;
 
 
-//Entradas y salidas del usuario
+  //Entradas y salidas del usuario
 type
 
   { TSignalitem }
@@ -227,10 +227,10 @@ type
     procedure LoadFromStrings(StringList: TStringList);
     function GetListaUnidades: TStringList;
     procedure AddFromCvsList(aLista: TStringList);
-    procedure Exportar(aFilename: TFileName);
+    procedure Exportar(aFilename: TFileName; aDevice: string='');
   end;
 
-//Redes industriales
+  //Redes industriales
 type
 
   { TNetWorkItem }
@@ -827,7 +827,7 @@ begin
   end;
 end;
 
-procedure TSignalList.Exportar(aFilename: TFileName);
+procedure TSignalList.Exportar(aFilename: TFileName; aDevice: string);
 var
   ArchivoFinal, Lineas: TStringList;
   I: integer;
@@ -837,13 +837,24 @@ begin
   ArchivoFinal.Add('#');
   ArchivoFinal.Add('EIO_SIGNAL:');
   try
-    // Lineas := TStringList.Create;
     for I := 0 to Self.Count - 1 do
     begin
-      //Line//as.Clear;
-      Lineas := Self.Items[I].Exportar;
-      ArchivoFinal.AddStrings(Lineas);
-      Lineas.Free;
+      if aDevice = '' then
+      begin
+        Lineas := Self.Items[I].Exportar;
+        ArchivoFinal.AddStrings(Lineas);
+        Lineas.Free;
+      end
+      else
+      begin
+        if CompareText(Self.Items[I].Device, aDevice) = 0 then
+        begin
+          Lineas := Self.Items[I].Exportar;
+          ArchivoFinal.AddStrings(Lineas);
+          Lineas.Free;
+        end;
+      end;
+
     end;
   finally
     ArchivoFinal.SaveToFile(aFilename);

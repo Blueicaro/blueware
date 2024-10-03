@@ -1,0 +1,37 @@
+object FrameSimple: TFrameSimple
+  Left = 0
+  Height = 300
+  Top = 0
+  Width = 400
+  ClientHeight = 300
+  ClientWidth = 400
+  DesignTimePPI = 120
+  OnClick = FrameClick
+  ParentFont = False
+  TabOrder = 0
+  DesignLeft = 458
+  DesignTop = 32
+  object pnTitle: TPanel
+    Left = 6
+    Height = 44
+    Top = 6
+    Width = 388
+    Align = alTop
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 6
+    BorderSpacing.Right = 6
+    BevelOuter = bvLowered
+    ClientHeight = 44
+    ClientWidth = 388
+    Color = clMenuHighlight
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 0
+    object lbCaption: TLabel
+      Left = 8
+      Height = 1
+      Top = 8
+      Width = 1
+    end
+  end
+end

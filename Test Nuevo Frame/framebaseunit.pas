@@ -5,7 +5,7 @@ unit framebaseunit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, ExtCtrls, StdCtrls, Buttons;
+  Classes, SysUtils, Forms, Controls, ExtCtrls, Buttons;
 
 type
 
@@ -31,6 +31,7 @@ type
     procedure pnTitleMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer);
     procedure spbCloseClick(Sender: TObject);
+    procedure spbMinimizeClick(Sender: TObject);
     procedure spbRestoreClick(Sender: TObject);
   private
     FMover: boolean;
@@ -43,6 +44,7 @@ type
     procedure SetCaption(Value: string);
   public
     property Caption: string read GetCaption write SetCaption;
+
   public
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
@@ -196,6 +198,14 @@ end;
 procedure TFrameBase.spbCloseClick(Sender: TObject);
 begin
   Hide;
+end;
+
+procedure TFrameBase.spbMinimizeClick(Sender: TObject);
+begin
+  Self.Height:=pnTitle.Height+(spbMinimize.Top);
+  Self.Width:=Self.Width-(spbMinimize.Left-(spbMinimize.Width div 2));
+  Self.Left := 0;
+  Self.Top:=Parent.ClientHeight-Self.Height;
 end;
 
 procedure TFrameBase.spbRestoreClick(Sender: TObject);

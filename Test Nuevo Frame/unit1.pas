@@ -89,6 +89,8 @@ begin
   begin
     Frame := TFrameBase.Create(Self);
     Frame.Parent := Self;
+    Frame.Width:=Self.Width;
+    Frame.Height:=Self.Height;
   end;
   Frame.BringToFront;
   //Frame.Free;
